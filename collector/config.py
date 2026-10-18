@@ -20,6 +20,16 @@ class Source:
     feed_hint: str | None = None
     telegram: str | None = None
     html: dict | None = None     # {item, link, title}
+    about: str = ""              # краткое описание сайта для каталога
+    list_url: str | None = None  # страница со списком статей, если это не главная
+    match: str | None = None     # регулярное выражение: какие адреса считать статьями
+    unique: str | None = None    # "title": у всех записей один адрес, различаем по заголовку
+    min_title: int = 20          # минимальная длина заголовка при разборе страницы
+
+    def fingerprint(self) -> str:
+        """Меняется, когда меняются настройки поиска — тогда способ ищется заново."""
+        return "|".join(str(x) for x in (self.url, self.list_url, self.match, self.html,
+                                         self.feed_hint, self.unique, self.min_title))
 
 
 @dataclass

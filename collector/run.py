@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
@@ -14,15 +15,18 @@ from urllib.parse import urlsplit
 
 from . import config
 from .fetch import Fetcher, FetchError
+from .filters import url_ok
 from .methods import discover, feed, page, sitemap, telegram
 from .store import Store
-from .util import iso, item_id, now_utc, parse_date
+from .util import clean_title, iso, item_id, key_id, now_utc, parse_date
 
 log = logging.getLogger("collector")
 
 RESOLVE_EVERY = timedelta(days=7)    # как часто заново искать способ для режима auto
-META_PER_RUN = 8                     # сколько новых статей догружать для заголовка/даты
 RESOLVE_BUDGET = 150                 # секунд на поиск способа для одного сайта
+META_PER_RUN = 8                     # сколько новых статей догружать для заголовка/даты
+FLOOD_LIMIT = 40                     # больше новых записей без даты за раз — это переиндексация, а не новости
+BLOCKED_HTTP = re.compile(r"HTTP (401|403|429|451)")
 
 
 class NothingFound(Exception):
@@ -81,10 +85,9 @@ def resolve(src: config.Source, f: Fetcher) -> dict:
     def out_of_time() -> bool:
         return time.monotonic() > deadline
 
-    pages = []
-    blocked = 0
-    network_errors = 0
-    for url in dict.fromkeys([src.url, root_of(src.url)]):
+    start = src.list_url or src.url
+    pages, blocked, network_errors = [], 0, 0
+    for url in dict.fromkeys([start, src.url, root_of(src.url)]):
         try:
             resp = get_allowed(url, f)
         except RobotsBlocked:
@@ -94,6 +97,8 @@ def resolve(src: config.Source, f: Fetcher) -> dict:
             network_errors += str(e).startswith("сеть")
             continue
         pages.append((url, resp.content))
+        if src.html or src.match:
+            continue              # для сайтов с ручной настройкой ленту не ищем — нужна именно страница
         for candidate in discover.feed_links(resp.content, resp.url)[:3]:
             if try_feed(candidate, f):
                 return {"method": "rss", "url": candidate}
@@ -101,31 +106,54 @@ def resolve(src: config.Source, f: Fetcher) -> dict:
     if not pages and network_errors:
         raise FetchError("сайт не отвечает")
 
-    for candidate in discover.common_candidates(src.url):
-        if out_of_time():
-            raise NothingFound("не уложился в отведённое время при поиске ленты")
-        if try_feed(candidate, f):
-            return {"method": "rss", "url": candidate}
+    def harvest_ok(url, content) -> bool:
+        items = page.harvest(content, url, src.html, match=src.match, min_title=src.min_title,
+                             unique=src.unique)
+        return len([i for i in items if src.unique or url_ok(src, i["url"])]) >= 3 or \
+            (bool(src.html) and len(items) >= 1)
 
+    if src.html:                  # заданы селекторы — разбираем только страницу
+        for url, content in pages:
+            if harvest_ok(url, content):
+                return {"method": "page", "url": url}
+        raise NothingFound("селекторы из sources.yaml ничего не нашли на странице")
+
+    if not src.match:
+        for candidate in discover.common_candidates(src.url):
+            if out_of_time():
+                raise NothingFound("не уложился в отведённое время при поиске ленты")
+            if try_feed(candidate, f):
+                return {"method": "rss", "url": candidate}
+
+    undated_sitemap = None
     for sm in (f.sitemaps_from_robots(src.url) or [root_of(src.url) + "sitemap.xml"])[:3]:
         if out_of_time():
             break
         try:
-            if collect_sitemap(sm, f, seen=set(), limit_meta=0):
-                return {"method": "sitemap", "url": sm}
-        except (FetchError, RobotsBlocked, Exception):  # noqa: BLE001 — любая поломка карты = идём дальше
+            items, dated = collect_sitemap(sm, src, f, seen=set(), limit_meta=0, probe=True)
+        except Exception:  # noqa: BLE001 — любая поломка карты = идём дальше
             continue
+        if items and dated:
+            return {"method": "sitemap", "url": sm}
+        if len(items) >= 3 and not undated_sitemap:
+            undated_sitemap = sm
 
     for url, content in pages:
-        if len(page.harvest(content, url, src.html)) >= 3:
+        if harvest_ok(url, content):
             return {"method": "page", "url": url}
+
+    if undated_sitemap:
+        return {"method": "sitemap", "url": undated_sitemap}
 
     if blocked and not pages:
         raise RobotsBlocked("robots.txt запрещает обход")
     raise NothingFound("не нашёл ни ленты, ни карты сайта, ни списка статей")
 
 
-def collect_sitemap(url: str, f: Fetcher, seen: set[str], limit_meta: int = META_PER_RUN) -> list[dict]:
+def collect_sitemap(url: str, src: config.Source, f: Fetcher, seen: set[str],
+                    limit_meta: int = META_PER_RUN, meta_only_dated: bool = False,
+                    probe: bool = False) -> tuple[list[dict], bool]:
+    """Посты из карты сайта. Возвращает (посты, есть_ли_даты)."""
     resp = get_allowed(url, f)
     pages, children = sitemap.parse(resp.content)
     for child in sitemap.pick_children(children):
@@ -134,12 +162,16 @@ def collect_sitemap(url: str, f: Fetcher, seen: set[str], limit_meta: int = META
             pages.extend(more)
         except (FetchError, RobotsBlocked):
             continue
-    fresh = sitemap.recent(pages)
-    items = []
-    fetched = 0
-    for p in fresh:
+    pages = [p for p in pages if url_ok(src, p["loc"])]
+    dated = any(p["lastmod"] for p in pages)
+    chosen = sitemap.recent(pages) if dated else pages[-2000:]
+    if meta_only_dated and not dated:
+        limit_meta = 0
+    items, fetched = [], 0
+    for p in chosen:
         item = {"url": p["loc"], "title": p["title"], "summary": "",
                 "published": p["lastmod"], "via": "sitemap"}
+        got_meta = False
         if item_id(p["loc"]) not in seen and fetched < limit_meta:
             fetched += 1
             try:
@@ -147,19 +179,26 @@ def collect_sitemap(url: str, f: Fetcher, seen: set[str], limit_meta: int = META
                 item["title"] = m["title"] or item["title"]
                 item["summary"] = m["summary"]
                 item["published"] = m["published"] or item["published"]
+                got_meta = True
             except (FetchError, RobotsBlocked):
                 pass
+        if not item["title"] and dated and not got_meta and not probe:
+            continue          # заголовок догрузим в одном из следующих прогонов
         if not item["title"]:
             slug = [s for s in urlsplit(p["loc"]).path.split("/") if s]
             item["title"] = slug[-1].replace("-", " ").replace("_", " ").capitalize() if slug else p["loc"]
+        item["title"] = clean_title(item["title"])
         items.append(item)
-    return items
+    return items, dated
 
 
 def collect_page(url: str, src: config.Source, f: Fetcher, seen: set[str], enrich: bool) -> list[dict]:
     resp = get_allowed(url, f)
-    items = page.harvest(resp.content, resp.url, src.html)
-    if enrich:
+    items = page.harvest(resp.content, resp.url, src.html, match=src.match,
+                         min_title=src.min_title, unique=src.unique)
+    if not src.unique:
+        items = [i for i in items if url_ok(src, i["url"])]
+    if enrich and not src.unique:
         fetched = 0
         for item in items:
             if fetched >= META_PER_RUN:
@@ -176,6 +215,10 @@ def collect_page(url: str, src: config.Source, f: Fetcher, seen: set[str], enric
     return items
 
 
+def _rec_id(it: dict) -> str:
+    return key_id(it["key"]) if it.get("key") else item_id(it["url"])
+
+
 # ---------- один источник ----------
 
 def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_first: bool,
@@ -189,20 +232,34 @@ def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_firs
     try:
         if src.feeds:
             health["method"] = "rss"
-            not_modified = True
+            not_modified, errors, ok = True, [], 0
             for url in src.feeds:
-                got, nm = get_feed(url, f, st)
+                try:
+                    got, nm = get_feed(url, f, st)
+                except (FetchError, feed.NotAFeed) as e:
+                    errors.append(e)
+                    continue
+                ok += 1
                 items += got
                 not_modified &= nm
+            if not ok:
+                raise errors[0]
             if not_modified:
                 health["status"] = "not_modified"
+            if errors:
+                health["message"] = f"одна из лент недоступна: {errors[0]}"
         else:
             res = st.get("resolved")
-            fresh = res and parse_date(res.get("at")) and now - parse_date(res["at"]) < RESOLVE_EVERY
+            fp = src.fingerprint()
+            fresh = (res and res.get("fp") == fp and parse_date(res.get("at"))
+                     and now - parse_date(res["at"]) < RESOLVE_EVERY)
             for attempt in (0, 1):
                 if not fresh or attempt == 1:
+                    old = (res or {}).get("method"), (res or {}).get("url")
                     res = resolve(src, f)
-                    res["at"] = iso(now)
+                    res.update(at=iso(now), fp=fp)
+                    if old != (res["method"], res["url"]):
+                        is_first = True          # новый способ: всё найденное сейчас — не «новое»
                     st["resolved"] = res
                 try:
                     if res["method"] == "rss":
@@ -211,7 +268,12 @@ def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_firs
                             health["status"] = "not_modified"
                         items += got
                     elif res["method"] == "sitemap":
-                        items += collect_sitemap(res["url"], f, seen)
+                        # первый прогон: страницам с датой догружаем заголовки щедрее,
+                        # карты без дат пойдут в «архив», им заголовки не нужны
+                        got, dated = collect_sitemap(res["url"], src, f, seen,
+                                                     limit_meta=20 if is_first else META_PER_RUN,
+                                                     meta_only_dated=is_first)
+                        items += got
                     else:
                         items += collect_page(res["url"], src, f, seen, enrich=not is_first)
                     break
@@ -227,28 +289,38 @@ def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_firs
             items += telegram.parse(resp.content, src.telegram, src.url)
             health["method"] += "+telegram"
     except RobotsBlocked as e:
-        health.update(status="robots", message=f"robots.txt запрещает обход ({e})"[:200])
+        health.update(status="blocked", message=f"robots.txt просит роботов не заходить ({e})"[:200])
     except NothingFound as e:
         health.update(status="error", message=str(e))
     except FetchError as e:
-        health.update(status="error", message=str(e))
+        msg = str(e)
+        if BLOCKED_HTTP.search(msg):
+            health.update(status="blocked", message=f"сайт не пускает сборщик ({msg})")
+        else:
+            health.update(status="error", message=msg)
     except feed.NotAFeed as e:
         health.update(status="error", message=f"лента не читается: {e}")
     except Exception as e:  # noqa: BLE001 — один сломанный сайт не должен ронять весь прогон
         log.exception("%s: неожиданная ошибка", src.id)
         health.update(status="error", message=f"{type(e).__name__}: {e}"[:200])
 
-    records = []
+    records, undated_new = [], 0
     for it in items:
         pub = it["published"]
         if pub and pub > now + timedelta(hours=12):
             pub = now
-        rec = {"id": item_id(it["url"]), "source": src.id, "url": it["url"],
+        rid = _rec_id(it)
+        rec = {"id": rid, "source": src.id, "url": it["url"],
                "title": it["title"], "summary": it.get("summary", ""),
                "published": iso(pub), "seen": iso(now), "via": it["via"]}
-        if is_first and not pub:
-            rec["baseline"] = True       # первый прогон: старые статьи без даты не считаем «новыми»
+        if not pub and rid not in seen:
+            undated_new += 1
         records.append(rec)
+    baseline = is_first or undated_new > FLOOD_LIMIT
+    if baseline:
+        for rec in records:
+            if not rec["published"]:
+                rec["baseline"] = True   # старые статьи без даты не считаем «новыми»
     health["found"] = len(records)
     return records, health
 
@@ -277,11 +349,11 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
         health["new"] = new
         if health["status"] in ("ok", "not_modified"):
             st["last_ok"] = health["checked"]
-        elif health["status"] != "reference":
+        elif health["status"] == "error":
             errors += 1
         dates = [r["published"] or r["seen"] for r in records if not r.get("baseline")]
         if dates:
-            st["last_post"] = max([d for d in dates] + ([st["last_post"]] if st.get("last_post") else []))
+            st["last_post"] = max(dates + ([st["last_post"]] if st.get("last_post") else []))
         st["health"] = health
         log.info("%-32s %-13s %-8s найдено %3d, новых %3d %s", src.id, health["method"],
                  health["status"], health["found"], new, health["message"])

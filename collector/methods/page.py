@@ -28,7 +28,8 @@ def _looks_like_article(url: str) -> bool:
 
 
 def harvest(content: bytes | str, base_url: str, selectors: dict | None = None,
-            limit: int = 40) -> list[dict]:
+            limit: int = 40, match: str | None = None, min_title: int = 20,
+            unique: str | None = None) -> list[dict]:
     """Ссылки на статьи со страницы-списка. Без селекторов — эвристика."""
     soup = BeautifulSoup(content, "lxml")
     for junk in soup.select("header nav, footer, nav, script, style, noscript"):
@@ -43,22 +44,33 @@ def harvest(content: bytes | str, base_url: str, selectors: dict | None = None,
             t = node.select_one(selectors["title"]) if selectors.get("title") else a
             url = urljoin(base_url, a["href"]).split("#")[0]
             title = html_to_text(t.get_text(" ") if t else a.get_text(" "))
-            if url not in seen and title:
-                seen.add(url)
-                results.append({"url": url, "title": truncate(title, 240), "summary": "",
-                                "published": None, "via": "page"})
+            if match and not re.search(match, url):
+                continue
+            key = f"{url}|{title}" if unique == "title" else url
+            if key not in seen and title:
+                seen.add(key)
+                item = {"url": url, "title": truncate(title, 240), "summary": "",
+                        "published": None, "via": "page"}
+                if unique == "title":
+                    item["key"] = key
+                results.append(item)
         return results[:limit]
 
     scope = soup.find("main") or soup.body or soup
     for a in scope.find_all("a", href=True):
         url = urljoin(base_url, a["href"]).split("#")[0]
-        if url in seen or not same_site(url, base_url) or not _looks_like_article(url):
+        if url in seen or not same_site(url, base_url):
+            continue
+        if match:
+            if not re.search(match, url):
+                continue
+        elif not _looks_like_article(url):
             continue
         title = html_to_text(a.get_text(" "))
-        if not (20 <= len(title) <= 220):
+        if not (min_title <= len(title) <= 220):
             heading = a.find(["h1", "h2", "h3", "h4"])
             title = html_to_text(heading.get_text(" ")) if heading else title
-            if not (20 <= len(title) <= 220):
+            if not (min_title <= len(title) <= 220):
                 continue
         seen.add(url)
         results.append({"url": url, "title": truncate(title, 240), "summary": "",

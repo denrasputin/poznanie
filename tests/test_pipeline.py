@@ -109,7 +109,7 @@ def test_robots_block(tmp_path):
     sess = FakeSession({"https://closed.example/robots.txt": b"User-agent: *\nDisallow: /\n"})
     collect_all(sources, Store(tmp_path / "d"), Fetcher(sess), workers=1, now=NOW)
     st = json.loads((tmp_path / "d" / "state.json").read_text())["sources"]["closed"]["health"]
-    assert st["status"] in ("robots", "error")
+    assert st["status"] in ("blocked", "error")
 
 
 def test_dead_site_fails_fast(tmp_path):

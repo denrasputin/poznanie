@@ -76,3 +76,20 @@ def same_site(url: str, base: str) -> bool:
     a = urlsplit(url).netloc.lower().removeprefix("www.")
     b = urlsplit(base).netloc.lower().removeprefix("www.")
     return bool(a) and (a == b or a.endswith("." + b) or b.endswith("." + a))
+
+
+def key_id(key: str) -> str:
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
+
+
+_SUFFIX = re.compile(r"\s+[|–—-]\s+([^|–—]{2,40})$")
+
+
+def clean_title(title: str) -> str:
+    """Убирает хвост вида « | Название сайта» из заголовков страниц."""
+    t = title.strip()
+    m = _SUFFIX.search(t)
+    if m and len(t) - len(m.group(0)) >= 15:
+        t = t[: m.start()].rstrip()
+    t = re.sub(r"^(Обновлено|Новое|Updated|New)\s+(?=[A-ZА-ЯЁ«\"])", "", t)
+    return t

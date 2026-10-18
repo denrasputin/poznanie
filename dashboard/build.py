@@ -6,14 +6,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 from collections import Counter
 from datetime import timedelta
 from pathlib import Path
 
+from urllib.parse import urlsplit
+
 from collector import config
+from collector.filters import url_ok
 from collector.store import iter_posts
-from collector.util import iso, now_utc, parse_date
+from collector.util import clean_title, iso, now_utc, parse_date
 
 STATIC = Path(__file__).resolve().parent / "static"
 STALE_DAYS = 60
@@ -43,12 +47,17 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
     for rec in iter_posts(data_dir):
         totals[rec["source"]] += 1
     for rec in iter_posts(data_dir, months_back(now, days)):
-        if rec["source"] not in src_by_id or rec.get("baseline"):
+        src = src_by_id.get(rec["source"])
+        if not src or rec.get("baseline"):
             continue
+        if rec.get("via") in ("sitemap", "page") and not src.unique and not url_ok(src, rec["url"]):
+            continue                  # служебные страницы, попавшие до настройки фильтров
+        if re.fullmatch(r"[0-9a-fA-F]{16,}", rec["title"].replace(" ", "")):
+            continue                  # заголовок не догрузился — вместо него служебный id
         date = parse_date(rec.get("published")) or parse_date(rec["seen"])
-        if not date or date < border:
+        if not date or date < border or date > now + timedelta(hours=12):
             continue
-        item = {"i": rec["id"], "s": rec["source"], "u": rec["url"], "t": rec["title"],
+        item = {"i": rec["id"], "s": rec["source"], "u": rec["url"], "t": clean_title(rec["title"]),
                 "d": iso(date)}
         if rec.get("summary"):
             item["m"] = rec["summary"]
@@ -64,6 +73,8 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
         status = "reference" if s.mode == "reference" else h.get("status", "pending")
         if status == "not_modified":
             status = "ok"
+        if status == "robots" or (status == "error" and "HTTP 40" in h.get("message", "")):
+            status = "blocked"
         last_post = st.get("last_post")
         if status == "ok" and last_post:
             lp = parse_date(last_post)
@@ -71,6 +82,7 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
                 status = "stale"
         out_sources.append({
             "id": s.id, "name": s.name, "section": s.section, "url": s.url, "lang": s.lang,
+            "about": s.about, "host": urlsplit(s.url).netloc.removeprefix("www."),
             "method": h.get("method", s.mode) if s.mode != "reference" else "reference",
             "status": status, "message": h.get("message", ""),
             "checked": h.get("checked"), "last_ok": st.get("last_ok"), "last_post": last_post,
@@ -84,6 +96,7 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
         "window_days": days,
         "sections": [{"id": sec.id, "name": sec.name, "udc": sec.udc} for sec in sections],
         "last_runs": runs[-24:],
+        "cron_minute": 17,
     }
 
     if out_dir.exists():

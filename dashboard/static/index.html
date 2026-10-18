@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Сайты для познания</title>
 <meta name="description" content="Свежие статьи со 112 сайтов личной подборки, по разделам">
+<meta name="theme-color" content="#f4f5f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111316" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
 <link rel="stylesheet" href="app.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='2' fill='%23fdfdfb' stroke='%2316181b' stroke-width='2'/%3E%3Cpath d='M3 11h26' stroke='%23c2412d' stroke-width='2'/%3E%3Cpath d='M8 16h16M8 20h12' stroke='%232a5d9f' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23f4f5f2'/%3E%3Crect x='24' y='40' width='132' height='100' rx='8' fill='%23fdfdfb' stroke='%2316181b' stroke-width='6'/%3E%3Cpath d='M24 64h132' stroke='%23c2412d' stroke-width='6'/%3E%3Cpath d='M48 90h84M48 112h60' stroke='%232a5d9f' stroke-width='5'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="masthead">
@@ -18,40 +21,66 @@
       <p class="eyebrow" id="eyebrow">Каталог подборки</p>
       <h1>Сайты для познания</h1>
     </div>
-    <p class="updated" id="updated">Загружаю данные…</p>
+    <div class="masthead-side">
+      <div class="next-run" id="next-run" title="Сборщик обходит сайты раз в час">
+        <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-bg" cx="18" cy="18" r="15"/><circle class="ring" id="ring" cx="18" cy="18" r="15"/></svg>
+        <span><b id="next-run-label">—</b><small id="updated">загружаю…</small></span>
+      </div>
+      <button type="button" class="icon-btn" id="theme-btn" aria-label="Тема оформления"></button>
+    </div>
+  </div>
+  <div class="ticker" id="ticker" aria-label="Последние публикации">
+    <span class="ticker-tag">Только что</span>
+    <div class="ticker-window"><div class="ticker-track" id="ticker-track"></div></div>
   </div>
 </header>
 
 <section class="summary" aria-label="Сводка">
-  <div class="wrap summary-row">
+  <div class="wrap summary-grid">
     <div class="hero">
-      <p class="hero-value" id="hero-value">—</p>
+      <p class="hero-value" id="hero-value">0</p>
       <p class="hero-label" id="hero-label">новых постов за сутки</p>
       <dl class="stats">
         <div><dt>За 7 дней</dt><dd id="stat-week">—</dd></div>
         <div><dt>Источников в строю</dt><dd id="stat-sources">—</dd></div>
       </dl>
+      <button type="button" class="lucky-btn" id="lucky-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="15.5" cy="8.5" r="1.4"/><circle cx="8.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg>
+        Случайная находка
+      </button>
     </div>
-    <figure class="chart">
+    <figure class="pulse">
       <figcaption>
-        <span class="chart-title">Посты по дням</span>
-        <span class="chart-sub" id="chart-sub">последние 14 дней, с учётом выбранных разделов</span>
+        <span class="pulse-title">Пульс подборки</span>
+        <span class="pulse-sub">посты по разделам за 14 дней · нажмите на раздел, чтобы выбрать его</span>
+        <span class="legend" aria-hidden="true">меньше <i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><i class="lv5"></i> больше</span>
       </figcaption>
-      <div class="chart-box" id="chart"></div>
+      <div class="pulse-scroll"><div class="pulse-grid" id="pulse"></div></div>
       <div class="tooltip" id="tooltip" role="status" hidden></div>
     </figure>
   </div>
 </section>
 
-<nav class="tabs wrap" role="tablist" aria-label="Режим">
-  <button role="tab" id="tab-feed-btn" aria-controls="tab-feed" aria-selected="true" data-tab="feed">Лента</button>
-  <button role="tab" id="tab-sources-btn" aria-controls="tab-sources" aria-selected="false" data-tab="sources">Источники <span class="tab-badge" id="err-badge" hidden></span></button>
+<nav class="tabs-bar" aria-label="Режим">
+  <div class="wrap tabs" role="tablist" id="tabs">
+    <button role="tab" id="tab-feed-btn" aria-controls="tab-feed" aria-selected="true" data-tab="feed">Лента</button>
+    <button role="tab" id="tab-refs-btn" aria-controls="tab-refs" aria-selected="false" data-tab="refs">Справочники <span class="tab-count" id="refs-count"></span></button>
+    <button role="tab" id="tab-sources-btn" aria-controls="tab-sources" aria-selected="false" data-tab="sources">Все источники <span class="tab-badge" id="err-badge" hidden></span></button>
+    <span class="tab-ink" id="tab-ink" aria-hidden="true"></span>
+  </div>
 </nav>
 
 <div class="wrap layout">
   <aside class="drawers" aria-label="Разделы">
     <div class="drawers-head">
       <h2>Разделы</h2>
+      <details class="udc-help">
+        <summary aria-label="Что значат числа у разделов">?</summary>
+        <div class="udc-pop">
+          <p><b>Числа — индексы УДК.</b> Универсальная десятичная классификация — библиотечная система, по которой расставляют книги и статьи: <b>1</b> — философия, <b>94</b> — история, <b>51</b> — математика.</p>
+          <p>Каждому разделу подборки присвоен ближайший класс УДК. Чем длиннее индекс, тем уже тема: 159.9 — психология внутри философии (1).</p>
+        </div>
+      </details>
       <button type="button" class="link-btn" id="sections-all">Все</button>
     </div>
     <div class="drawer-list" id="drawer-list"></div>
@@ -72,7 +101,24 @@
       <button type="button" class="more" id="more" hidden>Показать ещё</button>
     </section>
 
+    <section id="tab-refs" role="tabpanel" aria-labelledby="tab-refs-btn" hidden>
+      <div class="refs-intro">
+        <p>Справочники, архивы и инструменты подборки. Новых постов у них не бывает, поэтому в ленту они не попадают — к ним приходят с вопросом.</p>
+        <button type="button" class="lucky-btn small" id="lucky-ref-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg>
+          Случайный справочник
+        </button>
+      </div>
+      <div id="refs-list"></div>
+    </section>
+
     <section id="tab-sources" role="tabpanel" aria-labelledby="tab-sources-btn" hidden>
+      <div class="filters">
+        <label class="search">
+          <span class="visually-hidden">Поиск по источникам</span>
+          <input id="sq" type="search" placeholder="Название или тема источника" autocomplete="off">
+        </label>
+      </div>
       <div class="status-bar" id="status-bar"></div>
       <div id="sources-list"></div>
     </section>
@@ -80,8 +126,18 @@
 </div>
 
 <footer class="wrap foot">
-  <p>Сборщик обходит источники раз в час. Справочники и инструменты подборки показаны во вкладке «Источники», новых постов у них не бывает.</p>
+  <p>Сборщик обходит источники раз в час и хранит всё собранное с первого дня. Числа у разделов — индексы библиотечной классификации УДК.</p>
 </footer>
+
+<dialog class="lucky" id="lucky" aria-labelledby="lucky-title">
+  <form method="dialog" class="lucky-close-form"><button class="icon-btn lucky-x" aria-label="Закрыть">×</button></form>
+  <p class="lucky-kicker" id="lucky-title">Случайная находка</p>
+  <div class="lucky-card" id="lucky-card"></div>
+  <div class="lucky-actions">
+    <a class="btn primary" id="lucky-open" href="#" target="_blank" rel="noopener">Открыть</a>
+    <button type="button" class="btn" id="lucky-again">Ещё раз</button>
+  </div>
+</dialog>
 <script src="app.js"></script>
 </body>
 </html>
