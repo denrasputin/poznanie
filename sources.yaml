@@ -1,0 +1,794 @@
+# Источники дашборда «Сайты для познания».
+#
+# Разделы: id, name, udc — индекс УДК, им раздел подписан на дашборде.
+#
+# Поля источника:
+#   id        — короткий латинский идентификатор (не меняйте после первого запуска)
+#   name      — название, как в подборке
+#   section   — раздел (должен совпадать с одним из sections.name)
+#   url       — адрес сайта
+#   lang      — ru / en
+#   feeds     — список RSS/Atom-лент (проверены 17.10.2026)
+#   mode      — auto: сборщик сам ищет ленту, карту сайта или разбирает страницу
+#               reference: справочник, новых постов нет, только ссылка на дашборде
+#   feed_hint — предполагаемая лента для режима auto (пробуется первой)
+#   telegram  — имя публичного Telegram-канала (без @), чтобы брать посты оттуда
+#   html      — свои CSS-селекторы для разбора страницы: {item: ..., link: ..., title: ...}
+#
+sections:
+- id: filosofiya
+  name: Философия
+  udc: '1'
+- id: prakticheskaya-filosofiya
+  name: Практическая философия
+  udc: '17'
+- id: antropologiya
+  name: Антропология
+  udc: '572'
+- id: istoriya
+  name: История
+  udc: '94'
+- id: kriticheskoe-myshlenie
+  name: Критическое мышление
+  udc: '16'
+- id: kultura
+  name: Культура
+  udc: 008
+- id: iskusstvo-i-muzyka
+  name: Искусство и музыка
+  udc: '7'
+- id: yazyk
+  name: Язык
+  udc: '81'
+- id: tsifrovoe
+  name: Цифровое
+  udc: '004'
+- id: matematika
+  name: Математика
+  udc: '51'
+- id: mysli-i-idei
+  name: Мысли и идеи
+  udc: '001'
+- id: psihologiya-i-povedenie
+  name: Психология и поведение
+  udc: '159.9'
+- id: ekonomika
+  name: Экономика
+  udc: '33'
+- id: nauka-i-issledovaniya
+  name: Наука и исследования
+  udc: '5'
+sources:
+- id: sep
+  name: Stanford Encyclopedia of Philosophy — SEP
+  section: Философия
+  url: https://plato.stanford.edu/
+  lang: en
+  mode: auto
+  feed_hint: https://plato.stanford.edu/rss/sep.xml
+- id: iep
+  name: Internet Encyclopedia of Philosophy — IEP
+  section: Философия
+  url: https://iep.utm.edu/
+  lang: en
+  feeds:
+  - https://iep.utm.edu/feed/
+- id: 1000-word-philosophy
+  name: 1000-Word Philosophy
+  section: Философия
+  url: https://1000wordphilosophy.com/
+  lang: en
+  feeds:
+  - https://1000wordphilosophy.com/feed/
+- id: wireless-philosophy
+  name: Wireless Philosophy — Wi-Phi
+  section: Философия
+  url: https://www.wi-phi.com/
+  lang: en
+  mode: auto
+  feed_hint: https://www.wi-phi.com/feed/
+- id: hopwag
+  name: History of Philosophy Without Any Gaps
+  section: Философия
+  url: https://historyofphilosophy.net/
+  lang: en
+  feeds:
+  - https://historyofphilosophy.net/rss.xml
+- id: notre-dame-philosophical-reviews
+  name: Notre Dame Philosophical Reviews
+  section: Философия
+  url: https://ndpr.nd.edu/
+  lang: en
+  mode: auto
+- id: the-philosopher
+  name: The Philosopher
+  section: Философия
+  url: https://www.thephilosopher1923.org/articles
+  lang: en
+  feeds:
+  - https://www.thephilosopher1923.org/blog-feed.xml
+- id: early-modern-texts
+  name: Early Modern Texts
+  section: Философия
+  url: https://www.earlymoderntexts.com/
+  lang: en
+  mode: reference
+- id: philosophy-now
+  name: Philosophy Now
+  section: Философия
+  url: https://philosophynow.org/
+  lang: en
+  feeds:
+  - https://philosophynow.org/rss
+- id: logos
+  name: «Логос»
+  section: Философия
+  url: https://www.logosjournal.ru/archive/
+  lang: ru
+  mode: auto
+- id: filosofiya-hse
+  name: «Философия. Журнал Высшей школы экономики»
+  section: Философия
+  url: https://philosophy.hse.ru/
+  lang: ru
+  mode: auto
+- id: the-point
+  name: The Point
+  section: Философия
+  url: https://thepointmag.com/
+  lang: en
+  feeds:
+  - https://thepointmag.com/feed/
+- id: philosophy-bites
+  name: Philosophy Bites
+  section: Философия
+  url: https://philosophybites.com/
+  lang: en
+  feeds:
+  - https://philosophybites.libsyn.com/rss
+- id: noema
+  name: 'Noema: Philosophy & Culture'
+  section: Философия
+  url: https://www.noemamag.com/article-topic/philosophy-culture/
+  lang: en
+  feeds:
+  - https://www.noemamag.com/feed/
+- id: philpapers
+  name: PhilPapers
+  section: Философия
+  url: https://philpapers.org/
+  lang: en
+  mode: reference
+- id: philarchive
+  name: PhilArchive
+  section: Философия
+  url: https://philarchive.org/
+  lang: en
+  mode: reference
+- id: gefter
+  name: «Гефтер»
+  section: Философия
+  url: https://gefter.ru/
+  lang: ru
+  feeds:
+  - https://gefter.ru/feed
+- id: deniz-philosophy-map
+  name: 'Deniz Cem Önduygu: History of Philosophy'
+  section: Философия
+  url: https://www.denizcemonduygu.com/philo/browse/#
+  lang: en
+  mode: reference
+- id: modern-stoicism
+  name: Modern Stoicism
+  section: Практическая философия
+  url: https://modernstoicism.com/
+  lang: en
+  feeds:
+  - https://stoicismtoday.substack.com/feed
+- id: suttacentral
+  name: SuttaCentral
+  section: Практическая философия
+  url: https://suttacentral.net/
+  lang: en
+  mode: reference
+- id: theravada-ru
+  name: Тхеравада.ру
+  section: Практическая философия
+  url: https://www.theravada.ru/
+  lang: ru
+  mode: auto
+- id: sapiens
+  name: SAPIENS
+  section: Антропология
+  url: https://www.sapiens.org/
+  lang: en
+  mode: auto
+  feed_hint: https://www.sapiens.org/feed/
+- id: antropogenez-ru
+  name: Антропогенез.ру
+  section: Антропология
+  url: https://antropogenez.ru/
+  lang: ru
+  feeds:
+  - https://antropogenez.ru/rss/
+- id: dollar-street
+  name: Dollar Street
+  section: Антропология
+  url: https://www.gapminder.org/dollar-street
+  lang: en
+  mode: reference
+- id: jstor-daily
+  name: JSTOR Daily
+  section: Антропология
+  url: https://daily.jstor.org/
+  lang: en
+  feeds:
+  - https://daily.jstor.org/feed/
+- id: explaining-human-culture
+  name: Explaining Human Culture — HRAF
+  section: Антропология
+  url: https://hraf.yale.edu/ehc/
+  lang: en
+  mode: reference
+- id: fieldsights
+  name: Fieldsights
+  section: Антропология
+  url: https://culanth.org/fieldsights
+  lang: en
+  mode: auto
+- id: anthropology-news
+  name: Anthropology News
+  section: Антропология
+  url: https://www.anthropology-news.org/
+  lang: en
+  feeds:
+  - https://www.anthropology-news.org/feed/
+- id: prozhito
+  name: «Прожито»
+  section: История
+  url: https://prozhito.org/
+  lang: ru
+  mode: auto
+- id: the-public-domain-review
+  name: The Public Domain Review
+  section: История
+  url: https://publicdomainreview.org/
+  lang: en
+  feeds:
+  - https://publicdomainreview.org/rss.xml
+- id: russia-in-photo
+  name: «История России в фотографиях»
+  section: История
+  url: https://russiainphoto.ru/
+  lang: ru
+  mode: reference
+- id: pastvu
+  name: PastVu
+  section: История
+  url: https://pastvu.com/
+  lang: ru
+  mode: reference
+- id: understanding-science
+  name: Understanding Science
+  section: Критическое мышление
+  url: https://undsci.berkeley.edu/
+  lang: en
+  mode: reference
+- id: calling-bullshit
+  name: Calling Bullshit
+  section: Критическое мышление
+  url: https://callingbullshit.org/
+  lang: en
+  mode: reference
+- id: skeptical-inquirer
+  name: Skeptical Inquirer
+  section: Критическое мышление
+  url: https://skepticalinquirer.org/
+  lang: en
+  mode: auto
+  feed_hint: https://skepticalinquirer.org/feed/
+- id: provereno
+  name: «Проверено»
+  section: Критическое мышление
+  url: https://provereno.media/
+  lang: ru
+  feeds:
+  - https://provereno.media/feed/
+- id: retraction-watch
+  name: Retraction Watch
+  section: Критическое мышление
+  url: https://retractionwatch.com/
+  lang: en
+  feeds:
+  - https://retractionwatch.com/feed/
+- id: clearer-thinking
+  name: Clearer Thinking
+  section: Критическое мышление
+  url: https://www.clearerthinking.org/
+  lang: en
+  feeds:
+  - https://www.clearerthinking.org/blog-feed.xml
+- id: lesswrong
+  name: 'LessWrong: Library'
+  section: Критическое мышление
+  url: https://www.lesswrong.com/library
+  lang: en
+  feeds:
+  - https://www.lesswrong.com/feed.xml?view=curated-rss
+- id: arzamas
+  name: Arzamas
+  section: Культура
+  url: https://arzamas.academy/
+  lang: ru
+  mode: auto
+- id: polka
+  name: «Полка»
+  section: Культура
+  url: https://polka.academy/
+  lang: ru
+  mode: auto
+- id: public-books
+  name: Public Books
+  section: Культура
+  url: https://www.publicbooks.org/
+  lang: en
+  feeds:
+  - https://www.publicbooks.org/feed/
+- id: seans
+  name: «Сеанс»
+  section: Культура
+  url: https://seance.ru/magazine/
+  lang: ru
+  mode: auto
+- id: iskusstvo-kino
+  name: «Искусство кино»
+  section: Культура
+  url: https://kinoart.ru/
+  lang: ru
+  mode: auto
+- id: gorkiy
+  name: «Горький»
+  section: Культура
+  url: https://gorky.media/
+  lang: ru
+  mode: auto
+- id: sistemnyy-blok
+  name: «Системный Блокъ»
+  section: Культура
+  url: https://sysblok.ru/
+  lang: ru
+  feeds:
+  - https://sysblok.ru/feed/
+- id: asymptote
+  name: Asymptote
+  section: Культура
+  url: https://www.asymptotejournal.com/
+  lang: en
+  feeds:
+  - https://www.asymptotejournal.com/blog/feed/
+- id: perito
+  name: Perito
+  section: Культура
+  url: https://perito.media/
+  lang: ru
+  feeds:
+  - https://perito.media/feed
+- id: newochem
+  name: Newочём
+  section: Культура
+  url: https://newochem.io/
+  lang: ru
+  feeds:
+  - https://newochem.io/feed/
+- id: pchela
+  name: «Пчела»
+  section: Культура
+  url: https://pchela.media/
+  lang: ru
+  feeds:
+  - https://pchela.media/feed/
+- id: nozh
+  name: «Нож»
+  section: Культура
+  url: https://knife.media/
+  lang: ru
+  feeds:
+  - https://knife.media/feed/
+- id: discours
+  name: Discours
+  section: Культура
+  url: https://discours.io/guide
+  lang: ru
+  feeds:
+  - https://discours.io/rss
+- id: pravila-zhizni
+  name: «Правила жизни»
+  section: Культура
+  url: https://www.pravilamag.ru/
+  lang: ru
+  mode: auto
+- id: teorii-i-praktiki
+  name: «Теории и практики»
+  section: Культура
+  url: https://theoryandpractice.ru/
+  lang: ru
+  mode: auto
+- id: stakanchik
+  name: «Стаканчик»
+  section: Культура
+  url: https://stakanchik.media/
+  lang: ru
+  mode: auto
+- id: smarthistory
+  name: Smarthistory
+  section: Искусство и музыка
+  url: https://smarthistory.org/
+  lang: en
+  mode: auto
+- id: google-arts-culture
+  name: Google Arts & Culture
+  section: Искусство и музыка
+  url: https://artsandculture.google.com/
+  lang: en
+  mode: reference
+- id: artgid
+  name: «Артгид»
+  section: Искусство и музыка
+  url: https://artguide.com/
+  lang: ru
+  mode: auto
+- id: the-honest-broker
+  name: The Honest Broker
+  section: Искусство и музыка
+  url: https://www.honest-broker.com/
+  lang: en
+  feeds:
+  - https://www.honest-broker.com/feed
+- id: musicmap
+  name: Musicmap
+  section: Искусство и музыка
+  url: https://musicmap.info/
+  lang: en
+  mode: reference
+- id: iol-problems
+  name: Задачи Международной олимпиады по лингвистике
+  section: Язык
+  url: https://ioling.org/problems/
+  lang: ru
+  mode: reference
+- id: wals-online
+  name: WALS Online
+  section: Язык
+  url: https://wals.info/
+  lang: en
+  mode: reference
+- id: nkrya
+  name: Национальный корпус русского языка
+  section: Язык
+  url: https://ruscorpora.ru/
+  lang: ru
+  mode: reference
+- id: nicky-case
+  name: Nicky Case
+  section: Цифровое
+  url: https://ncase.me/
+  lang: en
+  feeds:
+  - https://ncase.me/feed.xml
+- id: bartosz-ciechanowski
+  name: Bartosz Ciechanowski
+  section: Цифровое
+  url: https://ciechanow.ski/
+  lang: en
+  feeds:
+  - https://ciechanow.ski/atom.xml
+- id: explorable-explanations
+  name: Explorable Explanations
+  section: Цифровое
+  url: https://explorabl.es/
+  lang: en
+  mode: reference
+- id: the-pudding
+  name: The Pudding
+  section: Цифровое
+  url: https://pudding.cool/
+  lang: en
+  feeds:
+  - https://pudding.cool/rss.xml
+- id: ieee-spectrum
+  name: IEEE Spectrum
+  section: Цифровое
+  url: https://spectrum.ieee.org/
+  lang: en
+  feeds:
+  - https://spectrum.ieee.org/feeds/feed.rss
+- id: habr
+  name: Habr
+  section: Цифровое
+  url: https://habr.com/ru/feed/
+  lang: ru
+  feeds:
+  - https://habr.com/ru/rss/best/weekly/
+- id: denis-shiryaev
+  name: Denis Shiryaev
+  section: Цифровое
+  url: https://shir-man.com/
+  lang: en
+  mode: reference
+- id: t-zh
+  name: Т—Ж
+  section: Цифровое
+  url: https://t-j.ru/
+  lang: ru
+  mode: auto
+- id: rbk-trendy
+  name: РБК Тренды
+  section: Цифровое
+  url: https://trends.rbc.ru/trends/
+  lang: ru
+  mode: auto
+- id: techinsider
+  name: TechInsider
+  section: Цифровое
+  url: https://www.techinsider.ru/
+  lang: ru
+  mode: auto
+- id: kod-durova
+  name: «Код Дурова»
+  section: Цифровое
+  url: https://kod.ru/
+  lang: ru
+  feeds:
+  - https://kod.ru/rss/
+- id: kinzhal
+  name: «Кинжал»
+  section: Цифровое
+  url: https://kinzhal.media/
+  lang: ru
+  feeds:
+  - https://kinzhal.media/feed/
+- id: vc-ru
+  name: 'vc.ru: новое'
+  section: Цифровое
+  url: https://vc.ru/new
+  lang: ru
+  feeds:
+  - https://vc.ru/rss
+- id: 3blue1brown
+  name: 3Blue1Brown
+  section: Математика
+  url: https://www.3blue1brown.com/
+  lang: en
+  mode: auto
+  feed_hint: https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw
+- id: matematicheskie-etyudy
+  name: «Математические этюды»
+  section: Математика
+  url: https://etudes.ru/
+  lang: ru
+  mode: auto
+- id: seeing-theory
+  name: Seeing Theory
+  section: Математика
+  url: https://seeing-theory.brown.edu/
+  lang: en
+  mode: reference
+- id: circles-sines-signals
+  name: Seeing Circles, Sines, and Signals
+  section: Математика
+  url: https://jackschaedler.github.io/circles-sines-signals/
+  lang: en
+  mode: reference
+- id: aeon
+  name: Aeon
+  section: Мысли и идеи
+  url: https://aeon.co/
+  lang: en
+  feeds:
+  - https://aeon.co/feed.rss
+- id: in-our-time
+  name: In Our Time — BBC Radio 4
+  section: Мысли и идеи
+  url: https://www.bbc.co.uk/programmes/b006qykl
+  lang: en
+  mode: auto
+  feed_hint: https://podcasts.files.bbci.co.uk/b006qykl.rss
+- id: psyche
+  name: Psyche
+  section: Мысли и идеи
+  url: https://psyche.co/
+  lang: en
+  feeds:
+  - https://psyche.co/feed
+- id: five-books
+  name: Five Books
+  section: Мысли и идеи
+  url: https://fivebooks.com/
+  lang: en
+  feeds:
+  - https://fivebooks.com/feed/
+- id: the-marginalian
+  name: The Marginalian
+  section: Мысли и идеи
+  url: https://www.themarginalian.org/
+  lang: en
+  feeds:
+  - https://www.themarginalian.org/feed/
+- id: reminder
+  name: Reminder
+  section: Мысли и идеи
+  url: https://reminder.media/
+  lang: ru
+  feeds:
+  - https://reminder.media/rss
+- id: monokler
+  name: «Моноклер»
+  section: Мысли и идеи
+  url: https://monocler.ru/
+  lang: ru
+  mode: auto
+- id: ideonomika
+  name: «Идеономика»
+  section: Мысли и идеи
+  url: https://ideanomics.ru/
+  lang: ru
+  feeds:
+  - https://ideanomics.ru/feed
+- id: behavioral-scientist
+  name: Behavioral Scientist
+  section: Психология и поведение
+  url: https://behavioralscientist.org/
+  lang: en
+  feeds:
+  - https://behavioralscientist.org/feed/
+- id: bps-research-digest
+  name: BPS Research Digest
+  section: Психология и поведение
+  url: https://www.bps.org.uk/research-digest
+  lang: en
+  mode: auto
+- id: forrt-reversals
+  name: 'FORRT: Replications & Reversals'
+  section: Психология и поведение
+  url: https://forrt.org/reversals/
+  lang: en
+  mode: reference
+- id: in-mind
+  name: In-Mind
+  section: Психология и поведение
+  url: https://www.in-mind.org/
+  lang: en
+  feeds:
+  - https://www.in-mind.org/rss.xml
+- id: openmind
+  name: OpenMind
+  section: Психология и поведение
+  url: https://www.openmindmag.org/
+  lang: en
+  mode: auto
+- id: psyjournals-ru
+  name: PsyJournals.ru
+  section: Психология и поведение
+  url: https://psyjournals.ru/
+  lang: ru
+  feeds:
+  - https://psyjournals.ru/rss/news.rss
+- id: psihologicheskaya-gazeta
+  name: «Психологическая газета»
+  section: Психология и поведение
+  url: https://psyjournal.ru/articles
+  lang: ru
+  mode: auto
+- id: zigmund
+  name: Журнал Zigmund.Online
+  section: Психология и поведение
+  url: https://zigmund.online/journal/
+  lang: ru
+  mode: auto
+- id: core-econ
+  name: 'CORE Econ: The Economy 2.0'
+  section: Экономика
+  url: https://books.core-econ.org/
+  lang: en
+  mode: reference
+- id: ekons
+  name: ЭКОНС
+  section: Экономика
+  url: https://econs.online/
+  lang: ru
+  mode: auto
+- id: marginal-revolution-university
+  name: Marginal Revolution University
+  section: Экономика
+  url: https://learn.mruniversity.com/
+  lang: en
+  mode: reference
+- id: quanta-magazine
+  name: Quanta Magazine
+  section: Наука и исследования
+  url: https://www.quantamagazine.org/
+  lang: en
+  feeds:
+  - https://www.quantamagazine.org/feed/
+- id: knowable-magazine
+  name: Knowable Magazine
+  section: Наука и исследования
+  url: https://knowablemagazine.org/
+  lang: en
+  feeds:
+  - https://knowablemagazine.org/rss
+- id: elementy
+  name: «Элементы»
+  section: Наука и исследования
+  url: https://elementy.ru/
+  lang: ru
+  feeds:
+  - https://elementy.ru/rss/news
+- id: nplus1
+  name: N + 1
+  section: Наука и исследования
+  url: https://nplus1.ru/
+  lang: ru
+  feeds:
+  - https://nplus1.ru/rss
+- id: our-world-in-data
+  name: Our World in Data
+  section: Наука и исследования
+  url: https://ourworldindata.org/
+  lang: en
+  feeds:
+  - https://ourworldindata.org/atom.xml
+- id: postnauka
+  name: «ПостНаука»
+  section: Наука и исследования
+  url: https://postnauka.org/
+  lang: ru
+  feeds:
+  - https://postnauka.org/feed
+- id: nauka-i-zhizn
+  name: «Наука и жизнь»
+  section: Наука и исследования
+  url: https://www.nkj.ru/
+  lang: ru
+  mode: auto
+- id: scientific-american
+  name: Scientific American
+  section: Наука и исследования
+  url: https://www.scientificamerican.com/
+  lang: en
+  mode: auto
+- id: symmetry
+  name: Symmetry
+  section: Наука и исследования
+  url: https://www.symmetrymagazine.org/
+  lang: en
+  feeds:
+  - https://www.symmetrymagazine.org/feed
+- id: trv
+  name: «Троицкий вариант — Наука»
+  section: Наука и исследования
+  url: https://www.trv-science.ru/
+  lang: ru
+  feeds:
+  - https://www.trv-science.ru/feed/
+- id: nautilus
+  name: Nautilus
+  section: Наука и исследования
+  url: https://nautil.us/
+  lang: en
+  feeds:
+  - https://nautil.us/feed/
+- id: what-if
+  name: What If? — xkcd
+  section: Наука и исследования
+  url: https://what-if.xkcd.com/
+  lang: en
+  feeds:
+  - https://what-if.xkcd.com/feed.atom
+- id: naked-science
+  name: Naked Science
+  section: Наука и исследования
+  url: https://naked-science.ru/
+  lang: ru
+  feeds:
+  - https://naked-science.ru/feed

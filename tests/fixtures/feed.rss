@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Тестовая лента</title><link>https://rss.example/</link>
+<item><title>Тестовая статья один</title><link>https://rss.example/one/?utm_source=rss</link>
+<description><![CDATA[<p>Первый <b>анонс</b> статьи.</p>]]></description><pubDate>Sat, 17 Oct 2026 09:00:00 +0000</pubDate></item>
+<item><title>Тестовая статья два</title><link>https://rss.example/two/</link><pubDate>Fri, 16 Oct 2026 09:00:00 +0000</pubDate></item>
+</channel></rss>

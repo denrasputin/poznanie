@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сайты для познания</title>
+<meta name="description" content="Свежие статьи со 112 сайтов личной подборки, по разделам">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='2' fill='%23fdfdfb' stroke='%2316181b' stroke-width='2'/%3E%3Cpath d='M3 11h26' stroke='%23c2412d' stroke-width='2'/%3E%3Cpath d='M8 16h16M8 20h12' stroke='%232a5d9f' stroke-width='1.5'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <div class="brand">
+      <p class="eyebrow" id="eyebrow">Каталог подборки</p>
+      <h1>Сайты для познания</h1>
+    </div>
+    <p class="updated" id="updated">Загружаю данные…</p>
+  </div>
+</header>
+
+<section class="summary" aria-label="Сводка">
+  <div class="wrap summary-row">
+    <div class="hero">
+      <p class="hero-value" id="hero-value">—</p>
+      <p class="hero-label" id="hero-label">новых постов за сутки</p>
+      <dl class="stats">
+        <div><dt>За 7 дней</dt><dd id="stat-week">—</dd></div>
+        <div><dt>Источников в строю</dt><dd id="stat-sources">—</dd></div>
+      </dl>
+    </div>
+    <figure class="chart">
+      <figcaption>
+        <span class="chart-title">Посты по дням</span>
+        <span class="chart-sub" id="chart-sub">последние 14 дней, с учётом выбранных разделов</span>
+      </figcaption>
+      <div class="chart-box" id="chart"></div>
+      <div class="tooltip" id="tooltip" role="status" hidden></div>
+    </figure>
+  </div>
+</section>
+
+<nav class="tabs wrap" role="tablist" aria-label="Режим">
+  <button role="tab" id="tab-feed-btn" aria-controls="tab-feed" aria-selected="true" data-tab="feed">Лента</button>
+  <button role="tab" id="tab-sources-btn" aria-controls="tab-sources" aria-selected="false" data-tab="sources">Источники <span class="tab-badge" id="err-badge" hidden></span></button>
+</nav>
+
+<div class="wrap layout">
+  <aside class="drawers" aria-label="Разделы">
+    <div class="drawers-head">
+      <h2>Разделы</h2>
+      <button type="button" class="link-btn" id="sections-all">Все</button>
+    </div>
+    <div class="drawer-list" id="drawer-list"></div>
+  </aside>
+
+  <main>
+    <section id="tab-feed" role="tabpanel" aria-labelledby="tab-feed-btn">
+      <div class="filters">
+        <div class="seg" role="radiogroup" aria-label="Период" id="period"></div>
+        <div class="seg" role="radiogroup" aria-label="Язык" id="lang"></div>
+        <label class="search">
+          <span class="visually-hidden">Фильтр по тексту</span>
+          <input id="q" type="search" placeholder="Слово в заголовке или анонсе" autocomplete="off">
+        </label>
+      </div>
+      <p class="selection" id="selection"></p>
+      <div id="feed" class="feed" aria-live="polite"></div>
+      <button type="button" class="more" id="more" hidden>Показать ещё</button>
+    </section>
+
+    <section id="tab-sources" role="tabpanel" aria-labelledby="tab-sources-btn" hidden>
+      <div class="status-bar" id="status-bar"></div>
+      <div id="sources-list"></div>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap foot">
+  <p>Сборщик обходит источники раз в час. Справочники и инструменты подборки показаны во вкладке «Источники», новых постов у них не бывает.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

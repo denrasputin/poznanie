@@ -1,0 +1,7 @@
+public/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+data/*.tmp
+.DS_Store
