@@ -20,7 +20,10 @@ self.addEventListener("activate", (e) => {
 async function networkFirst(req) {
   const cache = await caches.open(CACHE);
   try {
-    const res = await fetch(req);
+    // no-cache: сверяемся с сервером (короткий ответ 304, если файл не менялся), чтобы новая версия была видна сразу
+    const res = await (req.mode === "navigate"
+      ? fetch(req.url, { cache: "no-cache", credentials: "same-origin" })
+      : fetch(req, { cache: "no-cache" }));
     if (res.ok) cache.put(req, res.clone());
     return res;
   } catch (err) {
