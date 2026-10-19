@@ -1,4 +1,5 @@
-"""Надёжность сборщика: повторы, 429, недоступный robots.txt, старые номера, серия неудач."""
+"""Надёжность сборщика: повторы, 429, недоступный robots.txt, старые номера, серия неудач,
+общий сбой сети, испорченные данные."""
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -131,3 +132,41 @@ def test_min_interval_skips_recent_runs(tmp_path):
     store.state["last_run"] = (NOW - timedelta(hours=3)).isoformat()
     assert not too_soon(store, 150, NOW)                      # три часа назад — пора
     assert not too_soon(store, 0, NOW)                        # без ограничения — всегда можно
+
+
+def test_outage_is_not_counted_against_sources(tmp_path):
+    feeds = [{"id": f"f{i}", "name": f"Лента {i}", "section": "А", "url": f"https://f{i}.example/",
+              "feeds": [f"https://f{i}.example/feed"]} for i in range(6)]
+    srcs = setup(tmp_path, feeds)
+    sess = FakeSession({f"https://f{i}.example/feed": fx("feed.rss") for i in range(6)})
+    collect_all(srcs, Store(tmp_path / "d"), Fetcher(sess), workers=1, now=NOW)
+    sess.routes = {"https://f0.example/feed": fx("feed.rss")}            # отвечает один сайт из шести
+    s = collect_all(srcs, Store(tmp_path / "d"), Fetcher(sess), workers=1, now=NOW + timedelta(hours=3))
+    assert s.get("outage") is True
+    assert all("fail_streak" not in health(tmp_path, f"f{i}") for i in range(1, 6))
+    sess.routes = {f"https://f{i}.example/feed": fx("feed.rss") for i in range(5)}   # молчит только один
+    s = collect_all(srcs, Store(tmp_path / "d"), Fetcher(sess), workers=1, now=NOW + timedelta(hours=6))
+    assert "outage" not in s and health(tmp_path, "f5")["fail_streak"] == 1
+
+
+def test_broken_lines_and_state_do_not_stop_collecting(tmp_path):
+    d = tmp_path / "d"
+    (d / "posts").mkdir(parents=True)
+    good = {"id": "a1", "source": "f", "url": "https://f.example/a", "title": "Статья", "summary": "",
+            "published": None, "seen": "2026-10-17T10:00:00Z", "via": "rss"}
+    (d / "posts" / "2026-10.jsonl").write_text(json.dumps(good) + "\n{обрыв строки\n" + json.dumps({"id": "x"}) + "\n",
+                                               encoding="utf-8")
+    (d / "state.json").write_text("{испорчен", encoding="utf-8")
+    store = Store(d)
+    assert store.seen == {"a1"} and store.state == {"sources": {}, "runs": []}
+    assert (d / "state.json.broken").exists()
+    s = collect_all(setup(tmp_path, FEED_SRC), store, Fetcher(FakeSession({"https://f.example/feed": fx("feed.rss")})),
+                    workers=1, now=NOW)
+    assert s["new"] == 2 and json.loads((d / "state.json").read_text())["last_run"]
+
+
+def test_prune_forgets_removed_sources(tmp_path):
+    store = Store(tmp_path / "d")
+    store.source_state("old")["health"] = {"status": "error"}
+    store.source_state("kept")
+    assert store.prune({"kept"}) == ["old"] and set(store.state["sources"]) == {"kept"}

@@ -9,7 +9,7 @@ import json
 import os
 import re
 import shutil
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import timedelta
 from pathlib import Path
 
@@ -20,7 +20,7 @@ from collector.filters import url_ok
 from collector.store import iter_posts
 from collector.util import clean_title, iso, now_utc, parse_date
 
-from . import archive
+from . import archive, similar
 
 STATIC = Path(__file__).resolve().parent / "static"
 STALE_DAYS = 60
@@ -93,8 +93,13 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
     state = {}
     state_path = data_dir / "state.json"
     if state_path.exists():
-        state = json.loads(state_path.read_text(encoding="utf-8"))
-    sstate = state.get("sources", {})
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            print("state.json испорчен — статусы источников в этот раз не показываю")
+    sstate = state.get("sources", {}) if isinstance(state, dict) else {}
+    if not isinstance(state, dict):
+        state = {}
 
     border = now - timedelta(days=days)
     posts, totals, by_key, archive_recs = [], Counter(), {}, []
@@ -109,9 +114,8 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
         if not date or date > now + timedelta(hours=12):
             continue
         title = clean_title(rec["title"])
-        if search:
-            archive_recs.append({"url": rec["url"], "title": title, "summary": rec.get("summary", ""),
-                                 "source": src.name, "section": src.section, "date": iso(date)})
+        archive_recs.append({"url": rec["url"], "title": title, "summary": rec.get("summary", ""),
+                             "source": src.name, "sid": src.id, "section": src.section, "date": iso(date)})
         if rec.get("baseline") or date < border:
             continue
         # одна статья из ленты сайта и из его Telegram-канала — показываем один раз, ссылку на сайт
@@ -132,6 +136,24 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
     for p in posts:
         p.pop("_via", None)
     posts.sort(key=lambda p: p["d"], reverse=True)
+
+    # одна новость на нескольких сайтах: повторы ссылаются на самую раннюю запись, лента покажет их вместе
+    dups = similar.duplicates([{"i": p["i"], "s": p["s"], "t": p["t"], "ts": parse_date(p["d"]).timestamp()}
+                               for p in posts if not p.get("k")])
+    story_urls = defaultdict(set)
+    for p in posts:
+        if p["i"] in dups:
+            p["dup"] = dups[p["i"]]
+        story_urls[p.get("dup", p["i"])].add(p["u"])
+
+    # «ещё на эту тему»: похожие статьи из всего архива; страница загружает их, только когда попросят
+    finder = similar.Related(archive_recs)
+    related = {}
+    for p in posts:
+        found = finder.find(p["t"], p.get("m", ""), skip_urls=story_urls[p.get("dup", p["i"])])
+        if found:
+            p["r"] = 1
+            related[p["i"]] = [[c["title"], c["url"], c["sid"], c["date"]] for c in map(archive_recs.__getitem__, found)]
     recent_border = iso(now - timedelta(days=RECENT_DAYS))
     recent = [p for p in posts if p["d"] >= recent_border]
     older = [p for p in posts if p["d"] < recent_border]
@@ -188,17 +210,20 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
         "last_runs": runs[-24:],
     }
     (out_dir / "data").mkdir(exist_ok=True)
-    for name, obj in (("posts", recent), ("posts-older", older), ("sources", out_sources), ("meta", meta)):
+    for name, obj in (("posts", recent), ("posts-older", older), ("sources", out_sources), ("meta", meta),
+                      ("related", related)):
         (out_dir / "data" / f"{name}.json").write_text(
             json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    return {"posts": len(posts), "recent": len(recent), "sources": len(out_sources), "archive": archived}
+    return {"posts": len(posts), "recent": len(recent), "sources": len(out_sources), "archive": archived,
+            "duplicates": len(dups), "related": len(related)}
 
 
 def check(out_dir: Path, sources_path: Path) -> list[str]:
     """Быстрая проверка собранного сайта перед публикацией. Пустой список — всё в порядке."""
     problems = []
     for f in ("index.html", "app.js", "app.css", "sw.js", "manifest.webmanifest",
-              "data/posts.json", "data/sources.json", "data/meta.json"):
+              "data/posts.json", "data/sources.json", "data/meta.json", "data/related.json",
+              "fonts/golos-text-cyrillic.woff2", "fonts/literata-cyrillic.woff2"):
         if not (out_dir / f).exists():
             problems.append(f"нет файла {f}")
     if problems:
@@ -234,4 +259,5 @@ def main(argv=None) -> None:
         return
     res = build(Path(args.data), Path(args.out), Path(args.sources), args.days, search=not args.no_search)
     print(f"Дашборд собран: {res['posts']} постов ({res['recent']} за две недели), "
-          f"{res['sources']} источников, в поиске по архиву {res['archive']} -> {args.out}")
+          f"{res['sources']} источников, в поиске по архиву {res['archive']}; "
+          f"склеено повторов {res['duplicates']}, с похожими статьями {res['related']} -> {args.out}")

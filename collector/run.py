@@ -26,6 +26,8 @@ RESOLVE_EVERY = timedelta(days=7)    # как часто заново искат
 RESOLVE_BUDGET = 150                 # секунд на поиск способа для одного сайта
 META_PER_RUN = 8                     # сколько новых статей догружать для заголовка/даты
 FLOOD_LIMIT = 40                     # больше новых записей без даты за раз — это переиндексация, а не новости
+OUTAGE_SHARE = 0.5                   # не ответило больше половины сайтов — это сбой сети у нас, а не у сайтов
+OUTAGE_MIN = 6                       # ...если в прогоне хотя бы столько источников (иначе выборка мала)
 BLOCKED_HTTP = re.compile(r"HTTP (401|403|451)")
 LIMITED_HTTP = re.compile(r"HTTP 429")       # «слишком часто» — временное ограничение, а не запрет
 NUM_TAIL = re.compile(r"^(.*/)(\d+)/?$")      # адрес вида site/articles/621
@@ -367,6 +369,13 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
             src = futures[fut]
             results[src.id] = fut.result()
 
+    live = [s for s in sources if s.mode != "reference"]
+    failed = [s for s in live if results[s.id][1]["status"] not in ("ok", "not_modified")]
+    outage = len(live) >= OUTAGE_MIN and len(failed) > len(live) * OUTAGE_SHARE
+    if outage:
+        log.warning("Не ответили %d из %d источников — похоже на сбой сети; неудачи источникам не засчитываю",
+                    len(failed), len(live))
+
     total_new, errors = 0, 0
     for src in sources:
         records, health = results[src.id]
@@ -379,6 +388,8 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
                 st["last_ok"] = health["checked"]
             st.pop("fail_streak", None)
             st.pop("failing_since", None)
+        elif outage:
+            pass                         # общий сбой: серию неудач источника не продлеваем
         else:
             # сколько прогонов подряд не удалось: «ошибку» дашборд покажет только после нескольких
             st["fail_streak"] = st.get("fail_streak", 0) + 1
@@ -394,6 +405,8 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
 
     summary = {"at": iso(now), "seconds": round(time.monotonic() - started, 1),
                "new": total_new, "errors": errors, "sources": len(sources)}
+    if outage:
+        summary["outage"] = True
     store.state["runs"] = (store.state.get("runs", []) + [summary])[-48:]
     store.state["last_run"] = iso(now)
     store.save()
@@ -420,6 +433,7 @@ def main(argv=None) -> None:
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="%(message)s")
     _, sources = config.load(Path(args.sources))
+    configured = {s.id for s in sources}
     if args.only:
         wanted = set(args.only.split(","))
         sources = [s for s in sources if s.id in wanted]
@@ -428,6 +442,9 @@ def main(argv=None) -> None:
         log.info("Прошлый сбор был %s — меньше %d мин назад, этот запуск пропускаю",
                  store.state.get("last_run"), args.min_interval)
         return
+    gone = store.prune(configured)
+    if gone:
+        log.info("Убраны из состояния источники, которых нет в sources.yaml: %s", ", ".join(gone))
     summary = collect_all(sources, store, Fetcher(), workers=args.workers)
     log.info("Готово: %d новых постов, %d источников с ошибками, %.0f с",
              summary["new"], summary["errors"], summary["seconds"])

@@ -1,5 +1,5 @@
 """Сборка сайта: дубли, опасные ссылки, статусы с запасом на разовый сбой, разделение данных, посты справочников,
-проверка."""
+повторы одной новости, проверка."""
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -82,6 +82,19 @@ def test_reference_source_posts_are_hidden(tmp_path):
     build(data, out, spath, now=NOW)
     assert [p["s"] for p in json.loads((out / "data" / "posts.json").read_text())] == ["x"]
     assert {s["id"]: s["status"] for s in json.loads((out / "data" / "sources.json").read_text())}["r"] == "reference"
+
+
+def test_same_story_is_marked_and_related_file_written(tmp_path):
+    y = {"id": "y", "name": "Игрек", "section": "А", "url": "https://y.example/", "lang": "ru", "feeds": ["https://y.example/feed"]}
+    story = "ФАС признала рекламу Мегафона о 5G недостоверной"
+    data, spath = make(tmp_path, [post(1, "https://x.example/a", story, days_ago=0.5),
+                                  {**post(2, "https://y.example/b", story + ": оператор удивлён"), "source": "y"}],
+                       sources=(SRC, y))
+    out = tmp_path / "public"
+    res = build(data, out, spath, now=NOW)
+    posts = {p["i"]: p for p in json.loads((out / "data" / "posts.json").read_text())}
+    assert posts["id2"]["dup"] == "id1" and "dup" not in posts["id1"] and res["duplicates"] == 1
+    assert isinstance(json.loads((out / "data" / "related.json").read_text()), dict)
 
 
 def test_favicon_helpers():
