@@ -2,8 +2,13 @@ name: Сбор постов
 
 on:
   schedule:
-    - cron: "17 * * * *"      # запасное расписание: GitHub часто сдвигает и пропускает такие запуски
-  workflow_dispatch:           # кнопка «Run workflow»; её же раз в час нажимает внешний «будильник» (docs/external-trigger.md)
+    - cron: "17 */3 * * *"    # раз в три часа; GitHub часто сдвигает и пропускает такие запуски
+  workflow_dispatch:           # кнопка «Run workflow»; её же нажимает внешний «будильник» (docs/external-trigger.md)
+    inputs:
+      force:
+        description: "Собрать, даже если прошлый сбор был меньше 2,5 часа назад"
+        type: boolean
+        default: false
 
 permissions:
   contents: write              # сохранить новые посты в ветку data
@@ -32,8 +37,9 @@ jobs:
       - name: Установить зависимости
         run: pip install -r requirements.txt
 
-      - name: Собрать новые посты
-        run: python -m collector
+      - name: Собрать новые посты (не чаще раза в три часа)
+        # если расписание и «будильник» сработали почти одновременно, второй запуск ничего не делает
+        run: python -m collector --min-interval 150 ${{ inputs.force && '--force' || '' }}
 
       - name: Обновить значки сайтов
         continue-on-error: true            # без новых значков сайт всё равно соберётся

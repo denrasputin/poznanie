@@ -120,3 +120,14 @@ def test_old_numbered_articles_are_not_new(tmp_path):
     recs = [json.loads(l) for f in (tmp_path / "d" / "posts").glob("*.jsonl") for l in f.read_text().splitlines()]
     fresh = {r["url"].rsplit("/", 1)[1] for r in recs if not r.get("baseline")}
     assert fresh == {"11"}
+
+
+def test_min_interval_skips_recent_runs(tmp_path):
+    from collector.run import too_soon
+    store = Store(tmp_path / "d")
+    assert not too_soon(store, 150, NOW)                      # сборов ещё не было
+    store.state["last_run"] = (NOW - timedelta(hours=1)).isoformat()
+    assert too_soon(store, 150, NOW)                          # час назад — рано
+    store.state["last_run"] = (NOW - timedelta(hours=3)).isoformat()
+    assert not too_soon(store, 150, NOW)                      # три часа назад — пора
+    assert not too_soon(store, 0, NOW)                        # без ограничения — всегда можно

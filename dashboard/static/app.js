@@ -4,7 +4,7 @@
   const DAY = 86400000;
   const SESSION_GAP = 30 * 60e3;        // перерыв дольше получаса — новый визит (для метки «новое»)
   const SERIES_MIN = 4, SERIES_SHOW = 2; // от 4 постов одного сайта за день: показываем 2, остальное свёрнуто
-  const LATE_HOURS = 6;
+  const LATE_HOURS = 8;               // сбор раз в 3 часа + запас на задержки GitHub
   const PERIODS = [["1", "24 ч"], ["3", "3 дня"], ["7", "7 дней"], ["30", "30 дней"]];
   const LANGS = [["all", "Все языки"], ["ru", "Рус"], ["en", "Англ"]];
   const METHOD = { rss: "RSS-лента", sitemap: "карта сайта", page: "страница сайта", auto: "ищет способ", reference: "справочник", pending: "—" };

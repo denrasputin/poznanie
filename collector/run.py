@@ -400,6 +400,12 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
     return summary
 
 
+def too_soon(store: Store, min_minutes: int, now: datetime | None = None) -> bool:
+    """Прошло ли с прошлого сбора меньше min_minutes: тогда этот запуск лишний."""
+    last = parse_date(store.state.get("last_run"))
+    return bool(min_minutes and last and (now or now_utc()) - last < timedelta(minutes=min_minutes))
+
+
 def main(argv=None) -> None:
     ap = argparse.ArgumentParser(description="Собрать новые посты со всех источников")
     ap.add_argument("--only", help="id источников через запятую")
@@ -407,6 +413,9 @@ def main(argv=None) -> None:
     ap.add_argument("--sources", default=str(config.ROOT / "sources.yaml"))
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument("--min-interval", type=int, default=0, metavar="МИНУТ",
+                    help="не собирать, если прошлый сбор был меньше стольких минут назад")
+    ap.add_argument("--force", action="store_true", help="собрать, даже если недавно собирали")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="%(message)s")
@@ -414,6 +423,11 @@ def main(argv=None) -> None:
     if args.only:
         wanted = set(args.only.split(","))
         sources = [s for s in sources if s.id in wanted]
-    summary = collect_all(sources, Store(Path(args.data)), Fetcher(), workers=args.workers)
+    store = Store(Path(args.data))
+    if not args.force and too_soon(store, args.min_interval):
+        log.info("Прошлый сбор был %s — меньше %d мин назад, этот запуск пропускаю",
+                 store.state.get("last_run"), args.min_interval)
+        return
+    summary = collect_all(sources, store, Fetcher(), workers=args.workers)
     log.info("Готово: %d новых постов, %d источников с ошибками, %.0f с",
              summary["new"], summary["errors"], summary["seconds"])
