@@ -132,4 +132,5 @@ def test_dead_site_fails_fast(tmp_path):
     collect_all(sources, Store(tmp_path / "d"), Fetcher(sess), workers=1, now=NOW)
     h = json.loads((tmp_path / "d" / "state.json").read_text())["sources"]["dead"]["health"]
     assert h["status"] == "error" and h["message"] == "сайт не отвечает"
-    assert len(sess.calls) <= 4          # не перебирает десяток адресов лент у мёртвого сайта
+    pages = [u for u, _ in sess.calls if not u.endswith("robots.txt")]
+    assert len(pages) <= 3               # один адрес с повторами, а не десяток адресов лент

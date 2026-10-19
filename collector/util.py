@@ -83,13 +83,17 @@ def key_id(key: str) -> str:
 
 
 _SUFFIX = re.compile(r"\s+[|–—-]\s+([^|–—]{2,40})$")
+_MONTHS = ("January|February|March|April|May|June|July|August|September|October|November|December|"
+           "января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря")
+_TRAIL_DATE = re.compile(rf"\s+\d{{1,2}}\s+(?:{_MONTHS})(?:\s+\d{{4}})?$", re.I)
 
 
 def clean_title(title: str) -> str:
-    """Убирает хвост вида « | Название сайта» из заголовков страниц."""
+    """Убирает хвост вида « | Название сайта» и дату карточки из заголовков страниц."""
     t = title.strip()
     m = _SUFFIX.search(t)
     if m and len(t) - len(m.group(0)) >= 15:
         t = t[: m.start()].rstrip()
     t = re.sub(r"^(Обновлено|Новое|Updated|New)\s+(?=[A-ZА-ЯЁ«\"])", "", t)
+    t = _TRAIL_DATE.sub("", t)        # «… 4 September» — дата из карточки на странице-списке
     return t

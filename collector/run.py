@@ -26,7 +26,9 @@ RESOLVE_EVERY = timedelta(days=7)    # как часто заново искат
 RESOLVE_BUDGET = 150                 # секунд на поиск способа для одного сайта
 META_PER_RUN = 8                     # сколько новых статей догружать для заголовка/даты
 FLOOD_LIMIT = 40                     # больше новых записей без даты за раз — это переиндексация, а не новости
-BLOCKED_HTTP = re.compile(r"HTTP (401|403|429|451)")
+BLOCKED_HTTP = re.compile(r"HTTP (401|403|451)")
+LIMITED_HTTP = re.compile(r"HTTP 429")       # «слишком часто» — временное ограничение, а не запрет
+NUM_TAIL = re.compile(r"^(.*/)(\d+)/?$")      # адрес вида site/articles/621
 
 
 class NothingFound(Exception):
@@ -219,6 +221,28 @@ def _rec_id(it: dict) -> str:
     return key_id(it["key"]) if it.get("key") else item_id(it["url"])
 
 
+def _url_number(url: str) -> tuple[str, int] | None:
+    p = urlsplit(url)
+    m = NUM_TAIL.match(p.netloc.lower().removeprefix("www.") + p.path)
+    return (m.group(1), int(m.group(2))) if m else None
+
+
+def mark_old_numbers(records: list[dict], st: dict, seen: set[str]) -> None:
+    """Номера статей обычно растут. Запись без даты с номером не больше уже виденного —
+    это старый материал, всплывший на главной, а не новый пост."""
+    nums = st.setdefault("max_num", {})
+    known = dict(nums)
+    for rec in records:
+        got = _url_number(rec["url"])
+        if not got:
+            continue
+        prefix, n = got
+        if (not rec["published"] and rec["id"] not in seen and prefix in known
+                and n <= known[prefix]):
+            rec["baseline"] = True
+        nums[prefix] = max(nums.get(prefix, 0), n)
+
+
 # ---------- один источник ----------
 
 def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_first: bool,
@@ -296,6 +320,8 @@ def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_firs
         msg = str(e)
         if BLOCKED_HTTP.search(msg):
             health.update(status="blocked", message=f"сайт не пускает сборщик ({msg})")
+        elif LIMITED_HTTP.search(msg):
+            health.update(status="limited", message="сайт просит заходить реже (HTTP 429), повторим позже")
         else:
             health.update(status="error", message=msg)
     except feed.NotAFeed as e:
@@ -316,6 +342,7 @@ def run_source(src: config.Source, f: Fetcher, st: dict, seen: set[str], is_firs
         if not pub and rid not in seen:
             undated_new += 1
         records.append(rec)
+    mark_old_numbers(records, st, seen)
     baseline = is_first or undated_new > FLOOD_LIMIT
     if baseline:
         for rec in records:
@@ -347,10 +374,17 @@ def collect_all(sources, store: Store, fetcher: Fetcher, workers: int = 8,
         new = store.add(records)
         total_new += new
         health["new"] = new
-        if health["status"] in ("ok", "not_modified"):
-            st["last_ok"] = health["checked"]
-        elif health["status"] == "error":
-            errors += 1
+        if health["status"] in ("ok", "not_modified", "reference"):
+            if health["status"] != "reference":
+                st["last_ok"] = health["checked"]
+            st.pop("fail_streak", None)
+            st.pop("failing_since", None)
+        else:
+            # сколько прогонов подряд не удалось: «ошибку» дашборд покажет только после нескольких
+            st["fail_streak"] = st.get("fail_streak", 0) + 1
+            st.setdefault("failing_since", health["checked"])
+            if health["status"] == "error":
+                errors += 1
         dates = [r["published"] or r["seen"] for r in records if not r.get("baseline")]
         if dates:
             st["last_post"] = max(dates + ([st["last_post"]] if st.get("last_post") else []))

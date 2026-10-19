@@ -23,45 +23,30 @@ sections:
 - id: filosofiya
   name: Философия
   udc: '1'
-- id: prakticheskaya-filosofiya
-  name: Практическая философия
-  udc: '17'
-- id: antropologiya
-  name: Антропология
-  udc: '572'
-- id: istoriya
-  name: История
-  udc: '94'
 - id: kriticheskoe-myshlenie
   name: Критическое мышление
   udc: '16'
-- id: kultura
-  name: Культура
-  udc: 008
-- id: iskusstvo-i-muzyka
-  name: Искусство и музыка
-  udc: '7'
-- id: yazyk
-  name: Язык
-  udc: '81'
-- id: tsifrovoe
-  name: Цифровое
-  udc: '004'
-- id: matematika
-  name: Математика
-  udc: '51'
-- id: mysli-i-idei
-  name: Мысли и идеи
-  udc: '001'
-- id: psihologiya-i-povedenie
-  name: Психология и поведение
+- id: psikhologiya
+  name: Психология
   udc: '159.9'
-- id: ekonomika
-  name: Экономика
-  udc: '33'
-- id: nauka-i-issledovaniya
-  name: Наука и исследования
+- id: idei
+  name: Идеи и эссе
+  udc: 001
+- id: istoriya-i-obshchestvo
+  name: История и общество
+  udc: '9'
+- id: kultura
+  name: Культура и искусство
+  udc: '7'
+- id: literatura-i-yazyk
+  name: Литература и язык
+  udc: '8'
+- id: nauka
+  name: Наука и математика
   udc: '5'
+- id: tekhnologii
+  name: Технологии
+  udc: 004
 sources:
 - id: sep
   name: Stanford Encyclopedia of Philosophy — SEP
@@ -92,8 +77,8 @@ sources:
   section: Философия
   url: https://www.wi-phi.com/
   lang: en
-  mode: auto
-  feed_hint: https://www.wi-phi.com/feed/
+  feeds:
+  - https://www.youtube.com/feeds/videos.xml?user=WirelessPhilosophy
   about: 'Короткие анимированные видео от философов Йеля, MIT, Duke и других университетов: логика, этика, эпистемология, критическое мышление'
 - id: hopwag
   name: History of Philosophy Without Any Gaps
@@ -101,7 +86,7 @@ sources:
   url: https://historyofphilosophy.net/
   lang: en
   feeds:
-  - https://historyofphilosophy.net/rss.xml
+  - https://feed.podbean.com/hopwag/feed.xml
   about: Подкаст для последовательного знакомства с историей философии, включая традиции за пределами привычного европейского канона
 - id: notre-dame-philosophical-reviews
   name: Notre Dame Philosophical Reviews
@@ -202,7 +187,7 @@ sources:
   about: Интерактивная карта связей между философами и идеями
 - id: modern-stoicism
   name: Modern Stoicism
-  section: Практическая философия
+  section: Философия
   url: https://modernstoicism.com/
   lang: en
   feeds:
@@ -211,14 +196,14 @@ sources:
   about: 'Проект исследователей и психотерапевтов о применении стоицизма в современной жизни: статьи и ежегодная онлайн-неделя Stoic Week'
 - id: suttacentral
   name: SuttaCentral
-  section: Практическая философия
+  section: Философия
   url: https://suttacentral.net/
   lang: en
   mode: reference
   about: 'Ранние буддийские тексты: сутты на пали с параллелями из других традиций и современными переводами, прежде всего Бхиккху Суджато'
 - id: theravada-ru
   name: Тхеравада.ру
-  section: Практическая философия
+  section: Философия
   url: https://www.theravada.ru/
   lang: ru
   mode: auto
@@ -228,7 +213,7 @@ sources:
   unique: title
 - id: sapiens
   name: SAPIENS
-  section: Антропология
+  section: История и общество
   url: https://www.sapiens.org/
   lang: en
   mode: auto
@@ -236,7 +221,7 @@ sources:
   about: Доступные материалы об антропологии, человеческом разнообразии, культуре и прошлом
 - id: antropogenez-ru
   name: Антропогенез.ру
-  section: Антропология
+  section: История и общество
   url: https://antropogenez.ru/
   lang: ru
   feeds:
@@ -244,14 +229,14 @@ sources:
   about: 'Крупный просветительский портал об эволюции человека: статьи, лекции антропологов, разборы распространённых мифов'
 - id: dollar-street
   name: Dollar Street
-  section: Антропология
+  section: История и общество
   url: https://www.gapminder.org/dollar-street
   lang: en
   mode: reference
   about: 'Фотографии быта семей из десятков стран, упорядоченные по доходу: как люди спят, готовят, хранят вещи'
 - id: jstor-daily
   name: JSTOR Daily
-  section: Антропология
+  section: История и общество
   url: https://daily.jstor.org/
   lang: en
   feeds:
@@ -259,14 +244,14 @@ sources:
   about: 'Познавательные статьи с опорой на академические исследования: антропология, история, культура и общество'
 - id: explaining-human-culture
   name: Explaining Human Culture — HRAF
-  section: Антропология
+  section: История и общество
   url: https://hraf.yale.edu/ehc/
   lang: en
   mode: reference
   about: 'Краткие обзоры кросс-культурных исследований из архива Human Relations Area Files (Йель): что известно о семье, конфликтах, религии, искусстве при сравнении многих обществ'
 - id: fieldsights
   name: Fieldsights
-  section: Антропология
+  section: История и общество
   url: https://culanth.org/fieldsights
   lang: en
   mode: auto
@@ -274,7 +259,7 @@ sources:
   match: /fieldsights/.
 - id: anthropology-news
   name: Anthropology News
-  section: Антропология
+  section: История и общество
   url: https://www.anthropology-news.org/
   lang: en
   feeds:
@@ -282,7 +267,7 @@ sources:
   about: Антропологические сюжеты и жизнь профессионального сообщества
 - id: prozhito
   name: «Прожито»
-  section: История
+  section: История и общество
   url: https://prozhito.org/
   lang: ru
   mode: auto
@@ -290,7 +275,7 @@ sources:
   list_url: https://prozhito.org/media/
 - id: the-public-domain-review
   name: The Public Domain Review
-  section: История
+  section: История и общество
   url: https://publicdomainreview.org/
   lang: en
   feeds:
@@ -298,14 +283,14 @@ sources:
   about: Эссе о забытых книгах, гравюрах, картах и курьёзах из общественного достояния, с крупными иллюстрациями
 - id: russia-in-photo
   name: «История России в фотографиях»
-  section: История
+  section: История и общество
   url: https://russiainphoto.ru/
   lang: ru
   mode: reference
   about: Большой открытый архив исторических фотографий из музеев, архивов и семейных собраний с поиском по годам и местам
 - id: pastvu
   name: PastVu
-  section: История
+  section: История и общество
   url: https://pastvu.com/
   lang: ru
   mode: reference
@@ -366,21 +351,24 @@ sources:
   about: Тексты о рациональности, убеждениях, вероятностях и когнитивных ошибках
 - id: arzamas
   name: Arzamas
-  section: Культура
+  section: Культура и искусство
   url: https://arzamas.academy/
   lang: ru
   mode: auto
   about: Курсы, лекции и статьи об истории, литературе, искусстве и культуре
 - id: polka
   name: «Полка»
-  section: Культура
+  section: Литература и язык
   url: https://polka.academy/
   lang: ru
   mode: auto
+  list_url: https://polka.academy/materials
+  match: /materials/\d+$
+  min_title: 8
   about: 'Путеводитель по русской литературе: произведения, авторы, исторический контекст и интерпретации'
 - id: public-books
   name: Public Books
-  section: Культура
+  section: Литература и язык
   url: https://www.publicbooks.org/
   lang: en
   feeds:
@@ -388,28 +376,28 @@ sources:
   about: Рецензии и эссе о книгах, культуре и обществе, в том числе от академических исследователей
 - id: seans
   name: «Сеанс»
-  section: Культура
+  section: Культура и искусство
   url: https://seance.ru/magazine/
   lang: ru
   mode: auto
   about: Кинокритика, история кино и культурный контекст
 - id: iskusstvo-kino
   name: «Искусство кино»
-  section: Культура
+  section: Культура и искусство
   url: https://kinoart.ru/
   lang: ru
   mode: auto
   about: 'Один из старейших российских журналов о кино: рецензии, интервью, фестивальные репортажи и теория; сайт регулярно обновляется'
 - id: gorkiy
   name: «Горький»
-  section: Культура
+  section: Литература и язык
   url: https://gorky.media/
   lang: ru
   mode: auto
   about: Книги, литературная критика, интервью и издательская жизнь
 - id: sistemnyy-blok
   name: «Системный Блокъ»
-  section: Культура
+  section: Культура и искусство
   url: https://sysblok.ru/
   lang: ru
   feeds:
@@ -417,7 +405,7 @@ sources:
   about: 'Цифровые гуманитарные исследования: язык, литература, история и культура через данные и вычислительные методы'
 - id: asymptote
   name: Asymptote
-  section: Культура
+  section: Литература и язык
   url: https://www.asymptotejournal.com/
   lang: en
   feeds:
@@ -425,7 +413,7 @@ sources:
   about: 'Международная литература в переводах: проза, поэзия, эссе, интервью и критика'
 - id: perito
   name: Perito
-  section: Культура
+  section: Культура и искусство
   url: https://perito.media/
   lang: ru
   feeds:
@@ -433,7 +421,7 @@ sources:
   about: Путешествия, места, локальная культура и человеческие истории
 - id: newochem
   name: Newочём
-  section: Культура
+  section: Культура и искусство
   url: https://newochem.io/
   lang: ru
   feeds:
@@ -441,7 +429,7 @@ sources:
   about: Переводы зарубежных познавательных статей и эссе на разные темы
 - id: pchela
   name: «Пчела»
-  section: Культура
+  section: Культура и искусство
   url: https://pchela.media/
   lang: ru
   feeds:
@@ -449,7 +437,7 @@ sources:
   about: Культурно-познавательные статьи о кино, книгах, искусстве, истории и других темах
 - id: nozh
   name: «Нож»
-  section: Культура
+  section: Культура и искусство
   url: https://knife.media/
   lang: ru
   feeds:
@@ -457,7 +445,7 @@ sources:
   about: Необычные культурные сюжеты, эссе и популярные тексты о человеке и обществе
 - id: discours
   name: Discours
-  section: Культура
+  section: Культура и искусство
   url: https://discours.io/guide
   lang: ru
   feeds:
@@ -465,21 +453,14 @@ sources:
   about: Авторские тексты о культуре, искусстве и обществе
 - id: pravila-zhizni
   name: «Правила жизни»
-  section: Культура
+  section: Культура и искусство
   url: https://www.pravilamag.ru/
   lang: ru
   mode: auto
   about: 'Широкое культурное и журнальное чтение: люди, искусство, истории и повседневная жизнь'
-- id: teorii-i-praktiki
-  name: «Теории и практики»
-  section: Культура
-  url: https://theoryandpractice.ru/
-  lang: ru
-  mode: auto
-  about: Популярные материалы об образовании, работе, культуре и саморазвитии
 - id: stakanchik
   name: «Стаканчик»
-  section: Культура
+  section: Культура и искусство
   url: https://stakanchik.media/
   lang: ru
   mode: auto
@@ -487,28 +468,28 @@ sources:
   match: /article/.
 - id: smarthistory
   name: Smarthistory
-  section: Искусство и музыка
+  section: Культура и искусство
   url: https://smarthistory.org/
   lang: en
-  mode: auto
+  mode: reference
   about: 'Бесплатный «учебник» истории искусства от искусствоведов: тысячи статей и коротких видео о произведениях от древности до современности'
 - id: google-arts-culture
   name: Google Arts & Culture
-  section: Искусство и музыка
+  section: Культура и искусство
   url: https://artsandculture.google.com/
   lang: en
   mode: reference
   about: Коллекции музеев и архивов со всего мира в высоком разрешении, виртуальные экспозиции и тематические истории
 - id: artgid
   name: «Артгид»
-  section: Искусство и музыка
+  section: Культура и искусство
   url: https://artguide.com/
   lang: ru
   mode: auto
   about: 'Журнал о современном искусстве и художественной жизни России: путеводитель по выставкам, рецензии, исследования'
 - id: the-honest-broker
   name: The Honest Broker
-  section: Искусство и музыка
+  section: Культура и искусство
   url: https://www.honest-broker.com/
   lang: en
   feeds:
@@ -516,35 +497,35 @@ sources:
   about: 'Рассылка музыкального историка Теда Джойя: эссе о классике, джазе, поп-музыке и о том, как стриминг и технологии меняют культуру'
 - id: musicmap
   name: Musicmap
-  section: Искусство и музыка
+  section: Культура и искусство
   url: https://musicmap.info/
   lang: en
   mode: reference
   about: 'Интерактивная генеалогия жанров популярной музыки с конца XIX века до наших дней: описания, контекст и примеры записей для каждого жанра'
 - id: iol-problems
   name: Задачи Международной олимпиады по лингвистике
-  section: Язык
+  section: Литература и язык
   url: https://ioling.org/problems/
   lang: ru
   mode: reference
   about: По нескольким примерам нужно восстановить грамматику, счёт или письменность незнакомого языка
 - id: wals-online
   name: WALS Online
-  section: Язык
+  section: Литература и язык
   url: https://wals.info/
   lang: en
   mode: reference
   about: 'Интерактивный атлас грамматических и фонетических особенностей языков мира: карты порядка слов, падежей, тонов и многого другого'
 - id: nkrya
   name: Национальный корпус русского языка
-  section: Язык
+  section: Литература и язык
   url: https://ruscorpora.ru/
   lang: ru
   mode: reference
   about: 'Огромное собрание текстов разных эпох и жанров с поиском: когда появилось слово, как менялась его частота, в каких контекстах оно живёт'
 - id: nicky-case
   name: Nicky Case
-  section: Цифровое
+  section: Технологии
   url: https://ncase.me/
   lang: en
   feeds:
@@ -552,7 +533,7 @@ sources:
   about: Интерактивные объяснения, например теория игр и доверие в The Evolution of Trust
 - id: bartosz-ciechanowski
   name: Bartosz Ciechanowski
-  section: Цифровое
+  section: Технологии
   url: https://ciechanow.ski/
   lang: en
   feeds:
@@ -560,14 +541,14 @@ sources:
   about: 'Огромные интерактивные статьи о том, как устроены механические часы, GPS, свет и тени, Луна: каждую модель можно вращать и менять'
 - id: explorable-explanations
   name: Explorable Explanations
-  section: Цифровое
+  section: Технологии
   url: https://explorabl.es/
   lang: en
   mode: reference
   about: Каталог интерактивных объяснений по математике, естественным и общественным наукам, в том числе работ Nicky Case
 - id: the-pudding
   name: The Pudding
-  section: Цифровое
+  section: Технологии
   url: https://pudding.cool/
   lang: en
   feeds:
@@ -575,7 +556,7 @@ sources:
   about: Визуальные эссе на данных о музыке, языке, культуре и повседневности
 - id: ieee-spectrum
   name: IEEE Spectrum
-  section: Цифровое
+  section: Технологии
   url: https://spectrum.ieee.org/
   lang: en
   feeds:
@@ -583,7 +564,7 @@ sources:
   about: 'Журнал IEEE, крупнейшей профессиональной организации инженеров: энергетика, электроника, ИИ, робототехника, полупроводники'
 - id: habr
   name: Habr
-  section: Цифровое
+  section: Технологии
   url: https://habr.com/ru/feed/
   lang: ru
   feeds:
@@ -591,35 +572,35 @@ sources:
   about: Технические статьи, инженерные разборы и опыт специалистов
 - id: denis-shiryaev
   name: Denis Shiryaev
-  section: Цифровое
+  section: Технологии
   url: https://shir-man.com/
   lang: en
   mode: reference
   about: Коллекция цифровых инструментов, симуляций и экспериментов, в том числе с ИИ
 - id: t-zh
   name: Т—Ж
-  section: Цифровое
+  section: Технологии
   url: https://t-j.ru/
   lang: ru
   mode: auto
   about: Практические разборы о деньгах, быте, работе и технологиях
 - id: rbk-trendy
   name: РБК Тренды
-  section: Цифровое
+  section: Технологии
   url: https://trends.rbc.ru/trends/
   lang: ru
   mode: auto
   about: Технологии, образование, общественные и экономические изменения
 - id: techinsider
   name: TechInsider
-  section: Цифровое
+  section: Технологии
   url: https://www.techinsider.ru/
   lang: ru
   mode: auto
   about: Популярные материалы о технологиях, устройствах и науке
 - id: kod-durova
   name: «Код Дурова»
-  section: Цифровое
+  section: Технологии
   url: https://kod.ru/
   lang: ru
   feeds:
@@ -627,7 +608,7 @@ sources:
   about: Новости технологий, сервисов и цифровых продуктов
 - id: kinzhal
   name: «Кинжал»
-  section: Цифровое
+  section: Технологии
   url: https://kinzhal.media/
   lang: ru
   feeds:
@@ -635,7 +616,7 @@ sources:
   about: Медиа Яндекс Практикума о работе, общении, продуктивности и профессиональной жизни
 - id: vc-ru
   name: 'vc.ru: новое'
-  section: Цифровое
+  section: Технологии
   url: https://vc.ru/new
   lang: ru
   feeds:
@@ -643,7 +624,7 @@ sources:
   about: Открытая лента о бизнесе, технологиях и личном опыте
 - id: 3blue1brown
   name: 3Blue1Brown
-  section: Математика
+  section: Наука и математика
   url: https://www.3blue1brown.com/
   lang: en
   mode: auto
@@ -651,28 +632,28 @@ sources:
   about: 'Визуальные объяснения математики с анимациями: линейная алгебра, матанализ, ряды Фурье, нейросети; на сайте есть текстовые версии уроков'
 - id: matematicheskie-etyudy
   name: «Математические этюды»
-  section: Математика
+  section: Наука и математика
   url: https://etudes.ru/
   lang: ru
   mode: auto
   about: 'Красивые анимации и рассказы о математических сюжетах: от решета Эратосфена до механизмов и узоров'
 - id: seeing-theory
   name: Seeing Theory
-  section: Математика
+  section: Наука и математика
   url: https://seeing-theory.brown.edu/
   lang: en
   mode: reference
   about: 'Интерактивное введение в теорию вероятностей и статистику от Брауновского университета: распределения, байесовский вывод, регрессия'
 - id: circles-sines-signals
   name: Seeing Circles, Sines, and Signals
-  section: Математика
+  section: Наука и математика
   url: https://jackschaedler.github.io/circles-sines-signals/
   lang: en
   mode: reference
   about: 'Компактное интерактивное введение в цифровую обработку сигналов: дискретизация, алиасинг, преобразование Фурье'
 - id: aeon
   name: Aeon
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://aeon.co/
   lang: en
   feeds:
@@ -680,7 +661,7 @@ sources:
   about: Содержательные эссе на пересечении философии, науки, истории и человеческого опыта
 - id: in-our-time
   name: In Our Time — BBC Radio 4
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://www.bbc.co.uk/programmes/b006qykl
   lang: en
   mode: auto
@@ -688,7 +669,7 @@ sources:
   about: Архив из более чем тысячи выпусков, в которых обычно трое учёных обсуждают одну тему из истории идей, науки, философии, религии или культуры
 - id: psyche
   name: Psyche
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://psyche.co/
   lang: en
   feeds:
@@ -696,7 +677,7 @@ sources:
   about: 'Психология, философия и практическое самопонимание: внимание, отношения, эмоциональная жизнь'
 - id: five-books
   name: Five Books
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://fivebooks.com/
   lang: en
   feeds:
@@ -704,7 +685,7 @@ sources:
   about: Эксперты рекомендуют пять книг по конкретной теме и объясняют выбор в интервью
 - id: the-marginalian
   name: The Marginalian
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://www.themarginalian.org/
   lang: en
   feeds:
@@ -712,7 +693,7 @@ sources:
   about: Эссе Марии Поповой о книгах, философии, науке, поэзии и искусстве, с длинными цитатами из первоисточников; проекту 20 лет
 - id: reminder
   name: Reminder
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://reminder.media/
   lang: ru
   feeds:
@@ -720,14 +701,14 @@ sources:
   about: Здоровье, привычки, поведение и качество жизни
 - id: monokler
   name: «Моноклер»
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://monocler.ru/
   lang: ru
   mode: auto
   about: Популярные статьи о психологии, культуре, философии и человеке
 - id: ideonomika
   name: «Идеономика»
-  section: Мысли и идеи
+  section: Идеи и эссе
   url: https://ideanomics.ru/
   lang: ru
   feeds:
@@ -735,7 +716,7 @@ sources:
   about: Идеи о работе, мышлении, поведении и саморазвитии
 - id: behavioral-scientist
   name: Behavioral Scientist
-  section: Психология и поведение
+  section: Психология
   url: https://behavioralscientist.org/
   lang: en
   feeds:
@@ -743,7 +724,7 @@ sources:
   about: Объяснения исследований поведения и их общественного значения
 - id: bps-research-digest
   name: BPS Research Digest
-  section: Психология и поведение
+  section: Психология
   url: https://www.bps.org.uk/research-digest
   lang: en
   mode: auto
@@ -751,14 +732,14 @@ sources:
   match: /research-digest/.
 - id: forrt-reversals
   name: 'FORRT: Replications & Reversals'
-  section: Психология и поведение
+  section: Психология
   url: https://forrt.org/reversals/
   lang: en
   mode: reference
   about: Каталог эффектов психологии и социальных наук, которые не воспроизвелись или оказались слабее, чем считалось
 - id: in-mind
   name: In-Mind
-  section: Психология и поведение
+  section: Психология
   url: https://www.in-mind.org/
   lang: en
   feeds:
@@ -766,14 +747,14 @@ sources:
   about: Научно-популярные статьи о психологии с участием исследователей и рецензентов
 - id: openmind
   name: OpenMind
-  section: Психология и поведение
+  section: Психология
   url: https://www.openmindmag.org/
   lang: en
   mode: auto
   about: Научно-популярные материалы о мышлении, поведении и науке
 - id: psyjournals-ru
   name: PsyJournals.ru
-  section: Психология и поведение
+  section: Психология
   url: https://psyjournals.ru/
   lang: ru
   feeds:
@@ -781,42 +762,42 @@ sources:
   about: Портал научных психологических журналов МГППУ в открытом доступе
 - id: psihologicheskaya-gazeta
   name: «Психологическая газета»
-  section: Психология и поведение
+  section: Психология
   url: https://psyjournal.ru/articles
   lang: ru
   mode: auto
   about: Статьи, профессиональные мнения и материалы по психологии
 - id: zigmund
   name: Журнал Zigmund.Online
-  section: Психология и поведение
+  section: Психология
   url: https://zigmund.online/journal/
   lang: ru
   mode: auto
   about: Популярные материалы об эмоциях, отношениях и психотерапии
 - id: core-econ
   name: 'CORE Econ: The Economy 2.0'
-  section: Экономика
+  section: История и общество
   url: https://books.core-econ.org/
   lang: en
   mode: reference
   about: 'Бесплатный современный учебник экономики от международной команды исследователей: каждая тема начинается с реальной проблемы — неравенства, климата, инноваций — и опирается на данные'
 - id: ekons
   name: ЭКОНС
-  section: Экономика
+  section: История и общество
   url: https://econs.online/
   lang: ru
   mode: auto
   about: 'Медиа Банка России об экономике: колонки экономистов, обзоры исследований и объяснения простым языком'
 - id: marginal-revolution-university
   name: Marginal Revolution University
-  section: Экономика
+  section: История и общество
   url: https://learn.mruniversity.com/
   lang: en
   mode: reference
   about: Короткие видеокурсы по микро- и макроэкономике и экономике повседневности от Тайлера Коуэна и Алекса Табаррока
 - id: quanta-magazine
   name: Quanta Magazine
-  section: Наука и исследования
+  section: Наука и математика
   url: https://www.quantamagazine.org/
   lang: en
   feeds:
@@ -824,7 +805,7 @@ sources:
   about: Глубокие и тщательно подготовленные объяснения математики и фундаментальной науки
 - id: knowable-magazine
   name: Knowable Magazine
-  section: Наука и исследования
+  section: Наука и математика
   url: https://knowablemagazine.org/
   lang: en
   feeds:
@@ -832,7 +813,7 @@ sources:
   about: Доступные обзоры исследований и состояния научных областей
 - id: elementy
   name: «Элементы»
-  section: Наука и исследования
+  section: Наука и математика
   url: https://elementy.ru/
   lang: ru
   feeds:
@@ -840,7 +821,7 @@ sources:
   about: Подробный научпоп с вниманием к механизмам, аргументам и исследованиям
 - id: nplus1
   name: N + 1
-  section: Наука и исследования
+  section: Наука и математика
   url: https://nplus1.ru/
   lang: ru
   feeds:
@@ -848,7 +829,7 @@ sources:
   about: Новости исследований и объясняющие материалы по разным наукам
 - id: our-world-in-data
   name: Our World in Data
-  section: Наука и исследования
+  section: Наука и математика
   url: https://ourworldindata.org/
   lang: en
   feeds:
@@ -856,7 +837,7 @@ sources:
   about: Данные и объяснения о здоровье, населении, экономике, окружающей среде и других глобальных вопросах
 - id: postnauka
   name: «ПостНаука»
-  section: Наука и исследования
+  section: Наука и математика
   url: https://postnauka.org/
   lang: ru
   feeds:
@@ -864,21 +845,21 @@ sources:
   about: Экспертные объяснения и лекции по естественным и гуманитарным дисциплинам
 - id: nauka-i-zhizn
   name: «Наука и жизнь»
-  section: Наука и исследования
+  section: Наука и математика
   url: https://www.nkj.ru/
   lang: ru
   mode: auto
   about: 'Один из старейших научно-популярных журналов: статьи учёных о физике, биологии, технике, истории науки и большой архив на сайте'
 - id: scientific-american
   name: Scientific American
-  section: Наука и исследования
+  section: Наука и математика
   url: https://www.scientificamerican.com/
   lang: en
   mode: auto
   about: 'Широкий научный журнал: исследования, объясняющие материалы и общественное значение науки'
 - id: symmetry
   name: Symmetry
-  section: Наука и исследования
+  section: Наука и математика
   url: https://www.symmetrymagazine.org/
   lang: en
   feeds:
@@ -886,7 +867,7 @@ sources:
   about: Специализированный научпоп о физике частиц и связанных исследованиях
 - id: trv
   name: «Троицкий вариант — Наука»
-  section: Наука и исследования
+  section: Наука и математика
   url: https://www.trv-science.ru/
   lang: ru
   feeds:
@@ -894,7 +875,7 @@ sources:
   about: Исследования, научная среда, образование и дискуссии вокруг науки
 - id: nautilus
   name: Nautilus
-  section: Наука и исследования
+  section: Наука и математика
   url: https://nautil.us/
   lang: en
   feeds:
@@ -902,7 +883,7 @@ sources:
   about: Выразительные научные и научно-философские эссе
 - id: what-if
   name: What If? — xkcd
-  section: Наука и исследования
+  section: Наука и математика
   url: https://what-if.xkcd.com/
   lang: en
   feeds:
@@ -910,7 +891,7 @@ sources:
   about: Рэндалл Манро даёт серьёзные научные ответы на абсурдные вопросы вроде «что будет, если подать бейсбольный мяч на 90% скорости света»
 - id: naked-science
   name: Naked Science
-  section: Наука и исследования
+  section: Наука и математика
   url: https://naked-science.ru/
   lang: ru
   feeds:
