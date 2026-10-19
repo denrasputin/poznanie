@@ -1,0 +1,58 @@
+name: Публикация сайта
+
+on:
+  workflow_run:                # после каждого сбора — даже неудачного: сайт соберётся из последних сохранённых данных
+    workflows: ["Сбор постов"]
+    types: [completed]
+  push:                        # правка дизайна или источников — на сайте через минуту, без ожидания сбора
+    branches: [main]
+    paths: ["dashboard/**", "collector/**", "sources.yaml", "requirements.txt", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true     # публикуем самое свежее
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          path: data
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt pytest
+
+      - name: Тесты
+        run: python -m pytest -q
+
+      - name: Собрать сайт
+        run: python -m dashboard
+
+      - name: Проверить сайт перед публикацией
+        run: python -m dashboard --check     # если что-то не так — публикации не будет, останется прежний сайт
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4

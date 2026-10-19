@@ -2,7 +2,8 @@ name: Тесты
 
 on:
   push:
-    paths: ["collector/**", "dashboard/**", "tests/**", "requirements.txt"]
+    paths: ["collector/**", "dashboard/**", "tests/**", "requirements.txt", "sources.yaml"]
+  pull_request:
   workflow_dispatch:
 
 jobs:

@@ -4,129 +4,141 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Сайты для познания</title>
-<meta name="description" content="Свежие статьи со 112 сайтов личной подборки, по разделам">
+<meta name="description" content="Свежие статьи из личной подборки сайтов: философия, история, наука, культура">
 <meta name="theme-color" content="#f4f5f2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111316" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сайты для познания">
+<meta property="og:description" content="Свежие статьи из личной подборки сайтов: философия, история, наука, культура">
+<meta property="og:url" content="__SITE_URL__">
+<meta property="og:image" content="__SITE_URL__og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap">
 <link rel="stylesheet" href="app.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='2' fill='%23fdfdfb' stroke='%2316181b' stroke-width='2'/%3E%3Cpath d='M3 11h26' stroke='%23c2412d' stroke-width='2'/%3E%3Cpath d='M8 16h16M8 20h12' stroke='%232a5d9f' stroke-width='1.5'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23f4f5f2'/%3E%3Crect x='24' y='40' width='132' height='100' rx='8' fill='%23fdfdfb' stroke='%2316181b' stroke-width='6'/%3E%3Cpath d='M24 64h132' stroke='%23c2412d' stroke-width='6'/%3E%3Cpath d='M48 90h84M48 112h60' stroke='%232a5d9f' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='2' fill='%23fdfdfb' stroke='%2316181b' stroke-width='2'/%3E%3Cpath d='M4 11h24' stroke='%23c2412d' stroke-width='2'/%3E%3Cpath d='M8 16h16M8 20h12' stroke='%232a5d9f' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Познание">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 </head>
 <body>
-<header class="masthead">
-  <div class="wrap masthead-row">
-    <div class="brand">
-      <p class="eyebrow" id="eyebrow">Каталог подборки</p>
-      <h1>Сайты для познания</h1>
-    </div>
-    <div class="masthead-side">
-      <div class="next-run" id="next-run" title="Сборщик обходит сайты раз в час">
-        <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-bg" cx="18" cy="18" r="15"/><circle class="ring" id="ring" cx="18" cy="18" r="15"/></svg>
-        <span><b id="next-run-label">—</b><small id="updated">загружаю…</small></span>
-      </div>
+<a class="skip" href="#content">К содержимому</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="./" aria-label="Сайты для познания — на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="20" rx="2.5" class="mark-card"/><path d="M4 11h24" class="mark-red"/><path d="M8 16h16M8 20h12" class="mark-blue"/></svg>
+      <span>Сайты для познания</span>
+    </a>
+    <div class="top-actions">
+      <button type="button" class="icon-btn" id="lucky-btn" aria-label="Случайная находка" title="Случайная находка">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="9" cy="9" r="1.2" class="fill"/><circle cx="15" cy="15" r="1.2" class="fill"/><circle cx="15" cy="9" r="1.2" class="fill"/><circle cx="9" cy="15" r="1.2" class="fill"/><circle cx="12" cy="12" r="1.2" class="fill"/></svg>
+      </button>
       <button type="button" class="icon-btn" id="theme-btn" aria-label="Тема оформления"></button>
     </div>
   </div>
-  <div class="ticker" id="ticker" aria-label="Последние публикации">
-    <span class="ticker-tag">Только что</span>
-    <div class="ticker-window"><div class="ticker-track" id="ticker-track"></div></div>
-  </div>
 </header>
 
-<section class="summary" aria-label="Сводка">
-  <div class="wrap summary-grid">
-    <div class="hero">
-      <p class="hero-value" id="hero-value">0</p>
-      <p class="hero-label" id="hero-label">новых постов за сутки</p>
-      <dl class="stats">
-        <div><dt>За 7 дней</dt><dd id="stat-week">—</dd></div>
-        <div><dt>Источников в строю</dt><dd id="stat-sources">—</dd></div>
-      </dl>
-      <button type="button" class="lucky-btn" id="lucky-btn">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="15.5" cy="8.5" r="1.4"/><circle cx="8.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg>
-        Случайная находка
-      </button>
-    </div>
-    <figure class="pulse">
-      <figcaption>
-        <span class="pulse-title">Пульс подборки</span>
-        <span class="pulse-sub">посты по разделам за 14 дней · нажмите на раздел, чтобы выбрать его</span>
-        <span class="legend" aria-hidden="true">меньше <i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><i class="lv5"></i> больше</span>
-      </figcaption>
-      <div class="pulse-scroll"><div class="pulse-grid" id="pulse"></div></div>
-      <div class="tooltip" id="tooltip" role="status" hidden></div>
-    </figure>
-  </div>
-</section>
-
-<nav class="tabs-bar" aria-label="Режим">
+<nav class="tabs-bar" aria-label="Разделы сайта">
   <div class="wrap tabs" role="tablist" id="tabs">
-    <button role="tab" id="tab-feed-btn" aria-controls="tab-feed" aria-selected="true" data-tab="feed">Лента</button>
-    <button role="tab" id="tab-refs-btn" aria-controls="tab-refs" aria-selected="false" data-tab="refs">Справочники <span class="tab-count" id="refs-count"></span></button>
-    <button role="tab" id="tab-sources-btn" aria-controls="tab-sources" aria-selected="false" data-tab="sources">Все источники <span class="tab-badge" id="err-badge" hidden></span></button>
-    <span class="tab-ink" id="tab-ink" aria-hidden="true"></span>
+    <button role="tab" id="tab-feed-btn" aria-controls="tab-feed" data-tab="feed">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9"/></svg><span>Лента</span></button>
+    <button role="tab" id="tab-saved-btn" aria-controls="tab-saved" data-tab="saved">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3.5L7 20z"/></svg><span>Отложенное</span><b class="tab-count" id="saved-count" hidden></b></button>
+    <button role="tab" id="tab-refs-btn" aria-controls="tab-refs" data-tab="refs">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5A1.5 1.5 0 0 1 6.5 4H19v14H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19"/></svg><span>Справочники</span></button>
+    <button role="tab" id="tab-sources-btn" aria-controls="tab-sources" data-tab="sources">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.6 2.5 13.4 0 16M12 4c-2.5 2.6-2.5 13.4 0 16"/></svg><span>Источники</span></button>
+    <button role="tab" id="tab-archive-btn" aria-controls="tab-archive" data-tab="archive">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg><span>Архив</span></button>
   </div>
 </nav>
 
-<div class="wrap layout">
-  <aside class="drawers" aria-label="Разделы">
-    <div class="drawers-head">
-      <h2>Разделы</h2>
-      <details class="udc-help">
-        <summary aria-label="Что значат числа у разделов">?</summary>
-        <div class="udc-pop">
-          <p><b>Числа — индексы УДК.</b> Универсальная десятичная классификация — библиотечная система, по которой расставляют книги и статьи: <b>1</b> — философия, <b>94</b> — история, <b>51</b> — математика.</p>
-          <p>Каждому разделу подборки присвоен ближайший класс УДК. Чем длиннее индекс, тем уже тема: 159.9 — психология внутри философии (1).</p>
-        </div>
-      </details>
-      <button type="button" class="link-btn" id="sections-all">Все</button>
+<main class="wrap" id="content">
+  <div id="feed-top">
+    <div class="status-line">
+      <p id="status" aria-live="polite">Загружаю…</p>
+      <button type="button" class="link-btn" id="pulse-btn" aria-expanded="false" aria-controls="pulse">Пульс за 14 дней</button>
     </div>
-    <div class="drawer-list" id="drawer-list"></div>
-  </aside>
+    <figure class="pulse" id="pulse" hidden>
+      <figcaption>Посты по разделам за 14 дней <span class="legend" aria-hidden="true">меньше <i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><i class="lv5"></i> больше</span></figcaption>
+      <div class="pulse-scroll"><div class="pulse-grid" id="pulse-grid"></div></div>
+      <div class="tooltip" id="tooltip" role="status" hidden></div>
+    </figure>
+  </div>
 
-  <main>
-    <section id="tab-feed" role="tabpanel" aria-labelledby="tab-feed-btn">
-      <div class="filters">
-        <div class="seg" role="radiogroup" aria-label="Период" id="period"></div>
-        <div class="seg" role="radiogroup" aria-label="Язык" id="lang"></div>
-        <label class="search">
-          <span class="visually-hidden">Фильтр по тексту</span>
-          <input id="q" type="search" placeholder="Слово в заголовке или анонсе" autocomplete="off">
-        </label>
-      </div>
-      <p class="selection" id="selection"></p>
-      <div id="feed" class="feed" aria-live="polite"></div>
-      <button type="button" class="more" id="more" hidden>Показать ещё</button>
-    </section>
+  <div class="chips" id="chips" role="group" aria-label="Разделы"></div>
 
-    <section id="tab-refs" role="tabpanel" aria-labelledby="tab-refs-btn" hidden>
-      <div class="refs-intro">
-        <p>Справочники, архивы и инструменты подборки. Новых постов у них не бывает, поэтому в ленту они не попадают — к ним приходят с вопросом.</p>
-        <button type="button" class="lucky-btn small" id="lucky-ref-btn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg>
-          Случайный справочник
-        </button>
-      </div>
-      <div id="refs-list"></div>
-    </section>
+  <section id="tab-feed" role="tabpanel" aria-labelledby="tab-feed-btn">
+    <div class="filters">
+      <div class="seg" role="radiogroup" aria-label="Период" id="period"></div>
+      <div class="seg" role="radiogroup" aria-label="Язык" id="lang"></div>
+      <label class="search">
+        <span class="visually-hidden">Фильтр по тексту</span>
+        <input id="q" type="search" placeholder="Слово в заголовке или анонсе" autocomplete="off">
+      </label>
+      <button type="button" class="icon-btn square" id="density-btn" aria-pressed="false" title="Только заголовки" aria-label="Только заголовки">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>
+      </button>
+    </div>
+    <div id="feed" class="feed"></div>
+    <button type="button" class="more" id="more" hidden></button>
+  </section>
 
-    <section id="tab-sources" role="tabpanel" aria-labelledby="tab-sources-btn" hidden>
-      <div class="filters">
-        <label class="search">
-          <span class="visually-hidden">Поиск по источникам</span>
-          <input id="sq" type="search" placeholder="Название или тема источника" autocomplete="off">
-        </label>
-      </div>
-      <div class="status-bar" id="status-bar"></div>
-      <div id="sources-list"></div>
-    </section>
-  </main>
-</div>
+  <section id="tab-saved" role="tabpanel" aria-labelledby="tab-saved-btn" hidden>
+    <div class="saved-head">
+      <p class="intro">Статьи, которые вы отложили кнопкой <svg class="inline-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3.5L7 20z"/></svg> в ленте.</p>
+      <label class="check"><input type="checkbox" id="hide-read"> Скрыть прочитанное</label>
+    </div>
+    <div id="saved-list"></div>
+    <details class="panel" id="sync">
+      <summary><span>Синхронизация между устройствами</span><small id="sync-state"></small></summary>
+      <div id="sync-body"></div>
+    </details>
+  </section>
+
+  <section id="tab-refs" role="tabpanel" aria-labelledby="tab-refs-btn" hidden>
+    <p class="intro">Справочники, архивы и инструменты подборки. Новых постов у них не бывает — к ним приходят с вопросом.</p>
+    <div id="refs-list"></div>
+  </section>
+
+  <section id="tab-sources" role="tabpanel" aria-labelledby="tab-sources-btn" hidden>
+    <div class="filters">
+      <label class="search">
+        <span class="visually-hidden">Поиск по источникам</span>
+        <input id="sq" type="search" placeholder="Название или тема источника" autocomplete="off">
+      </label>
+    </div>
+    <div id="sources-list"></div>
+    <details class="panel" id="diag">
+      <summary><span>Состояние сборщика</span><small id="diag-summary"></small></summary>
+      <div id="diag-body"></div>
+    </details>
+  </section>
+
+  <section id="tab-archive" role="tabpanel" aria-labelledby="tab-archive-btn" hidden>
+    <div class="filters">
+      <label class="search">
+        <span class="visually-hidden">Поиск по архиву</span>
+        <input id="aq" type="search" placeholder="Поиск по всем собранным статьям" autocomplete="off">
+      </label>
+      <label class="select"><span class="visually-hidden">Раздел</span><select id="a-section"></select></label>
+      <label class="select"><span class="visually-hidden">Порядок</span>
+        <select id="a-sort"><option value="rel">По смыслу</option><option value="new">Сначала новые</option></select></label>
+    </div>
+    <div id="archive-list" aria-live="polite"></div>
+    <button type="button" class="more" id="a-more" hidden>Показать ещё</button>
+  </section>
+</main>
 
 <footer class="wrap foot">
-  <p>Сборщик обходит источники раз в час и хранит всё собранное с первого дня. Числа у разделов — индексы библиотечной классификации УДК.</p>
+  <p>Сборщик обходит источники примерно раз в час и хранит всё собранное с первого дня.</p>
 </footer>
 
 <dialog class="lucky" id="lucky" aria-labelledby="lucky-title">

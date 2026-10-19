@@ -2,13 +2,11 @@ name: Сбор постов
 
 on:
   schedule:
-    - cron: "17 * * * *"      # каждый час в :17 (GitHub может запускать с опозданием на 5–20 минут)
-  workflow_dispatch:           # кнопка «Run workflow» для ручного запуска
+    - cron: "17 * * * *"      # запасное расписание: GitHub часто сдвигает и пропускает такие запуски
+  workflow_dispatch:           # кнопка «Run workflow»; её же раз в час нажимает внешний «будильник» (docs/external-trigger.md)
 
 permissions:
-  contents: write              # сохранить новые посты в data/
-  pages: write                 # опубликовать дашборд
-  id-token: write
+  contents: write              # сохранить новые посты в ветку data
 
 concurrency:
   group: collect
@@ -18,11 +16,13 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4          # код и sources.yaml — из main
+
+      - uses: actions/checkout@v4          # данные — из отдельной ветки data, в папку data/
+        with:
+          ref: data
+          path: data
 
       - uses: actions/setup-python@v5
         with:
@@ -35,25 +35,25 @@ jobs:
       - name: Собрать новые посты
         run: python -m collector
 
-      - name: Сохранить данные в репозиторий
+      - name: Обновить значки сайтов
+        continue-on-error: true            # без новых значков сайт всё равно соберётся
+        run: python -m dashboard.favicons
+
+      - name: Сохранить данные в ветку data
+        working-directory: data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
+          git add -A
           if git diff --cached --quiet; then
             echo "Новых данных нет"
-          else
-            git commit -m "Данные: $(date -u +'%Y-%m-%d %H:%M') UTC"
-            git pull --rebase --autostash
-            git push
+            exit 0
           fi
+          git commit -q -m "Данные: $(date -u +'%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3; do
+            git pull -q --rebase && git push -q && exit 0
+            sleep 5
+          done
+          exit 1
 
-      - name: Собрать дашборд
-        run: python -m dashboard
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-      - id: deployment
-        uses: actions/deploy-pages@v4
+# Публикацию сайта после сбора делает отдельный сценарий deploy.yml («Публикация сайта»).
