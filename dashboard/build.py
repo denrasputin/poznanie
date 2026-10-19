@@ -100,7 +100,9 @@ def build(data_dir: Path, out_dir: Path, sources_path: Path, days: int = 31, now
     posts, totals, by_key, archive_recs = [], Counter(), {}, []
     for rec in iter_posts(data_dir):
         src = src_by_id.get(rec["source"])
-        if not src or is_junk(rec, src):
+        if not src or src.mode == "reference":
+            continue                  # у справочников постов нет, даже собранных до перевода в справочники
+        if is_junk(rec, src):
             continue
         totals[rec["source"]] += 1
         date = parse_date(rec.get("published")) or parse_date(rec["seen"])

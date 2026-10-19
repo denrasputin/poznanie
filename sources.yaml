@@ -361,10 +361,7 @@ sources:
   section: Литература и язык
   url: https://polka.academy/
   lang: ru
-  mode: auto
-  list_url: https://polka.academy/materials
-  match: /materials/\d+$
-  min_title: 8
+  mode: reference
   about: 'Путеводитель по русской литературе: произведения, авторы, исторический контекст и интерпретации'
 - id: public-books
   name: Public Books

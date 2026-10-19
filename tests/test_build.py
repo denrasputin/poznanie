@@ -1,4 +1,5 @@
-"""Сборка сайта: дубли, опасные ссылки, статусы с запасом на разовый сбой, разделение данных, проверка."""
+"""Сборка сайта: дубли, опасные ссылки, статусы с запасом на разовый сбой, разделение данных, посты справочников,
+проверка."""
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -11,12 +12,15 @@ from dashboard.build import build, check
 NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
-def make(tmp_path, posts, state=None):
+SRC = {"id": "x", "name": "Икс", "section": "А", "url": "https://x.example/", "lang": "ru",
+       "feeds": ["https://x.example/feed"]}
+
+
+def make(tmp_path, posts, state=None, sources=(SRC,)):
     spath = tmp_path / "s.yaml"
     spath.write_text(yaml.safe_dump({
         "sections": [{"id": "a", "name": "А", "udc": "1"}],
-        "sources": [{"id": "x", "name": "Икс", "section": "А", "url": "https://x.example/", "lang": "ru",
-                     "feeds": ["https://x.example/feed"]}],
+        "sources": list(sources),
     }, allow_unicode=True), encoding="utf-8")
     data = tmp_path / "data"
     (data / "posts").mkdir(parents=True)
@@ -67,6 +71,17 @@ def test_check_catches_empty_site(tmp_path):
     out = tmp_path / "public"
     build(data, out, spath, now=NOW)
     assert any("пустой" in p for p in check(out, spath))
+
+
+def test_reference_source_posts_are_hidden(tmp_path):
+    ref = {"id": "r", "name": "Эр", "section": "А", "url": "https://r.example/", "lang": "ru", "mode": "reference"}
+    data, spath = make(tmp_path, [post(1, "https://x.example/a", "Статья"),
+                                  {**post(2, "https://r.example/b", "Собрано до перевода в справочники"), "source": "r"}],
+                       sources=(SRC, ref))
+    out = tmp_path / "public"
+    build(data, out, spath, now=NOW)
+    assert [p["s"] for p in json.loads((out / "data" / "posts.json").read_text())] == ["x"]
+    assert {s["id"]: s["status"] for s in json.loads((out / "data" / "sources.json").read_text())}["r"] == "reference"
 
 
 def test_favicon_helpers():
