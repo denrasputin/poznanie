@@ -77,12 +77,15 @@
     return (d.getFullYear() === new Date(now).getFullYear() ? fmtShort : fmtShortYear).format(d);
   }
 
-  // значок сайта: свой файл из fav/, иначе — первая буква названия
+  // значок сайта: свой файл из fav/; если его нет или он не открылся — значок от Google;
+  // первая буква названия — только на самый крайний случай
+  const googleIcon = (host) => `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=64`;
   function favicon(src, cls = "fav") {
-    const letter = h("span", { class: "fav-letter", "aria-hidden": "true", text: (src.name.replace(/^[«"]/, "")[0] || "?").toUpperCase() });
-    if (!src.icon) return letter;
-    const img = h("img", { class: cls, alt: "", loading: "lazy", width: 22, height: 22, src: src.icon });
-    img.addEventListener("error", () => img.replaceWith(letter), { once: true });
+    const letter = () => h("span", { class: "fav-letter", "aria-hidden": "true", text: (src.name.replace(/^[«"]/, "")[0] || "?").toUpperCase() });
+    const urls = [src.icon, src.host ? googleIcon(src.host) : null].filter(Boolean);
+    if (!urls.length) return letter();
+    const img = h("img", { class: cls, alt: "", loading: "lazy", width: 22, height: 22, referrerpolicy: "no-referrer", src: urls.shift() });
+    img.addEventListener("error", () => { if (urls.length) img.src = urls.shift(); else img.replaceWith(letter()); });
     return img;
   }
 
