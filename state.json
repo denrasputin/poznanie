@@ -1,13 +1,6 @@
 {
- "last_run": "2026-11-06T06:50:43Z",
+ "last_run": "2026-11-06T16:47:10Z",
  "runs": [
-  {
-   "at": "2026-10-23T11:42:17Z",
-   "errors": 4,
-   "new": 69,
-   "seconds": 74.6,
-   "sources": 111
-  },
   {
    "at": "2026-10-23T17:10:30Z",
    "errors": 4,
@@ -336,12 +329,19 @@
    "new": 13,
    "seconds": 176.2,
    "sources": 111
+  },
+  {
+   "at": "2026-11-06T16:47:10Z",
+   "errors": 6,
+   "new": 151,
+   "seconds": 82.9,
+   "sources": 111
   }
  ],
  "sources": {
   "1000-word-philosophy": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -354,13 +354,13 @@
      "last_modified": "Tue, 03 Nov 2026 20:48:37 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-06T21:48:58Z",
    "max_num": {}
   },
   "3blue1brown": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 205,
     "message": "",
     "method": "sitemap",
@@ -371,8 +371,8 @@
    "http": {
     "https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {
     "3blue1brown.com/": 404
    },
@@ -385,23 +385,23 @@
   },
   "aeon": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://aeon.co/feed.rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T11:01:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T11:00:00Z",
    "max_num": {}
   },
   "anthropology-news": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -411,13 +411,13 @@
    "http": {
     "https://www.anthropology-news.org/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T13:30:08Z",
    "max_num": {}
   },
   "antropogenez-ru": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -427,17 +427,17 @@
    "http": {
     "https://antropogenez.ru/rss/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2024-08-28T06:16:00Z",
    "max_num": {
     "antropogenez.ru/single-news/article/": 943
    }
   },
   "artgid": {
-   "fail_streak": 64,
+   "fail_streak": 65,
    "failing_since": "2026-10-19T15:00:38Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сайт не отвечает",
     "method": "auto",
@@ -448,21 +448,21 @@
   },
   "arzamas": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 30,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified",
+    "new": 1,
+    "status": "ok",
     "via_url": "https://arzamas.academy/feed_v1.rss"
    },
    "http": {
     "https://arzamas.academy/feed_v1.rss": {
-     "etag": "W/\"6fcd2de6e6e25ef37067552b6d596c2c\""
+     "etag": "W/\"4c54711cbf6ba98cb7ede12b0ce206d6\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-03T05:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T05:00:00Z",
    "max_num": {
     "arzamas.academy/courses/": 233,
     "arzamas.academy/kids/": 497,
@@ -477,7 +477,7 @@
   },
   "asymptote": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -487,13 +487,13 @@
    "http": {
     "https://www.asymptotejournal.com/blog/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T14:00:33Z",
    "max_num": {}
   },
   "bartosz-ciechanowski": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -506,31 +506,31 @@
      "last_modified": "Sat, 05 Sep 2026 19:05:20 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2024-12-17T12:00:00Z",
    "max_num": {}
   },
   "behavioral-scientist": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 10,
     "message": "",
     "method": "rss",
     "new": 0,
-    "status": "not_modified"
+    "status": "ok"
    },
    "http": {
     "https://behavioralscientist.org/feed/": {
-     "last_modified": "Tue, 03 Nov 2026 21:07:56 GMT"
+     "last_modified": "Fri, 06 Nov 2026 16:45:35 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-15T10:09:45Z",
    "max_num": {}
   },
   "bps-research-digest": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "sitemap",
@@ -538,7 +538,7 @@
     "status": "ok",
     "via_url": "https://bps.org.uk/sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-04T09:51:00Z",
    "max_num": {},
    "resolved": {
@@ -550,7 +550,7 @@
   },
   "calling-bullshit": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -560,7 +560,7 @@
   },
   "circles-sines-signals": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -570,7 +570,7 @@
   },
   "clearer-thinking": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -582,13 +582,13 @@
      "last_modified": "Thu, 05 Nov 2026 17:01:37 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-04T11:15:23Z",
    "max_num": {}
   },
   "core-econ": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -598,7 +598,7 @@
   },
   "denis-shiryaev": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -608,7 +608,7 @@
   },
   "deniz-philosophy-map": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -618,25 +618,25 @@
   },
   "discours": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 50,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 1,
+    "status": "ok"
    },
    "http": {
     "https://discours.io/rss": {
-     "etag": "W/\"470213dae463f4a2976ee7bbc46307372a608171\""
+     "etag": "W/\"edbb4dc5c0d404cda8e4913495630076ea3b2903\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-04T11:33:29Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:31:54Z",
    "max_num": {}
   },
   "dollar-street": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -646,7 +646,7 @@
   },
   "early-modern-texts": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -655,10 +655,10 @@
    }
   },
   "ekons": {
-   "fail_streak": 58,
+   "fail_streak": 59,
    "failing_since": "2026-10-20T23:54:25Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сайт не отвечает",
     "method": "auto",
@@ -680,7 +680,7 @@
   },
   "elementy": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -690,13 +690,13 @@
    "http": {
     "https://elementy.ru/rss/news": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T01:26:00Z",
    "max_num": {}
   },
   "explaining-human-culture": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -706,7 +706,7 @@
   },
   "explorable-explanations": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -716,7 +716,7 @@
   },
   "fieldsights": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 16,
     "message": "",
     "method": "sitemap",
@@ -724,7 +724,7 @@
     "status": "ok",
     "via_url": "https://www.culanth.org/sitemaps-1-sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T00:00:00Z",
    "max_num": {},
    "resolved": {
@@ -736,7 +736,7 @@
   },
   "filosofiya-hse": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 30,
     "message": "",
     "method": "rss",
@@ -747,7 +747,7 @@
    "http": {
     "https://philosophy.hse.ru/ru/gateway/plugin/WebFeedGatewayPlugin/atom": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-09-29T21:00:00Z",
    "max_num": {
     "philosophy.hse.ru/ru/article/view/": 43023
@@ -761,7 +761,7 @@
   },
   "five-books": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -771,13 +771,13 @@
    "http": {
     "https://fivebooks.com/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-03T11:20:31Z",
    "max_num": {}
   },
   "forrt-reversals": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -786,10 +786,10 @@
    }
   },
   "gefter": {
-   "fail_streak": 53,
+   "fail_streak": 54,
    "failing_since": "2026-10-22T04:50:49Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сеть: SSLError",
     "method": "rss",
@@ -807,7 +807,7 @@
   },
   "google-arts-culture": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -817,16 +817,16 @@
   },
   "gorkiy": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 12,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 15,
     "message": "",
     "method": "page",
-    "new": 0,
+    "new": 3,
     "status": "ok",
     "via_url": "https://gorky.media/"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -837,20 +837,20 @@
   },
   "habr": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 40,
     "message": "",
     "method": "rss",
-    "new": 1,
+    "new": 5,
     "status": "ok"
    },
    "http": {
     "https://habr.com/ru/rss/best/weekly/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T07:01:24Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-05T13:18:48Z",
    "max_num": {
-    "habr.com/ru/articles/": 1103374,
+    "habr.com/ru/articles/": 1103988,
     "habr.com/ru/companies/alfa/articles/": 1096666,
     "habr.com/ru/companies/aurorium/articles/": 1101594,
     "habr.com/ru/companies/beget/articles/": 1093378,
@@ -864,16 +864,17 @@
     "habr.com/ru/companies/otus/articles/": 1097872,
     "habr.com/ru/companies/pvs-studio/articles/": 1097064,
     "habr.com/ru/companies/ru_mts/articles/": 1101958,
-    "habr.com/ru/companies/ruvds/articles/": 1102408,
+    "habr.com/ru/companies/ruvds/articles/": 1102690,
     "habr.com/ru/companies/selectel/articles/": 1102420,
     "habr.com/ru/companies/ssp-soft/articles/": 1097664,
     "habr.com/ru/companies/timeweb/articles/": 1101956,
+    "habr.com/ru/companies/yadro/articles/": 1101950,
     "habr.com/ru/companies/yandex/articles/": 1100180
    }
   },
   "hopwag": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 514,
     "message": "",
     "method": "rss",
@@ -883,13 +884,13 @@
    "http": {
     "https://feed.podbean.com/hopwag/feed.xml": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-25T04:00:00Z",
    "max_num": {}
   },
   "ideonomika": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -902,7 +903,7 @@
      "last_modified": "Tue, 03 Nov 2026 15:41:07 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-30T17:16:28Z",
    "max_num": {
     "ideanomics.ru/articles/": 36687
@@ -910,23 +911,23 @@
   },
   "ieee-spectrum": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 30,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 2,
     "status": "ok"
    },
    "http": {
     "https://spectrum.ieee.org/feeds/feed.rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T16:08:03Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:00:02Z",
    "max_num": {}
   },
   "iep": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -939,13 +940,13 @@
      "last_modified": "Fri, 06 Nov 2026 01:26:37 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-01T04:30:05Z",
    "max_num": {}
   },
   "in-mind": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -958,13 +959,13 @@
      "last_modified": "Thu, 05 Nov 2026 12:04:06 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-25T18:40:00Z",
    "max_num": {}
   },
   "in-our-time": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -978,7 +979,7 @@
      "last_modified": "Thu, 05 Nov 2026 09:45:05 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T09:45:00Z",
    "max_num": {},
    "resolved": {
@@ -990,7 +991,7 @@
   },
   "iol-problems": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -999,10 +1000,10 @@
    }
   },
   "iskusstvo-kino": {
-   "fail_streak": 13,
+   "fail_streak": 14,
    "failing_since": "2026-11-02T00:46:29Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сайт не отвечает",
     "method": "auto",
@@ -1021,44 +1022,44 @@
   },
   "jstor-daily": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://daily.jstor.org/feed/": {
-     "last_modified": "Thu, 05 Nov 2026 14:54:52 GMT"
+     "last_modified": "Fri, 06 Nov 2026 14:44:00 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T14:54:52Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T14:44:00Z",
    "max_num": {}
   },
   "kinzhal": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 30,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://kinzhal.media/feed/": {
-     "etag": "\"ba8cb09615b1ed753a9269812e2cc909-gzip\"",
-     "last_modified": "Wed, 04 Nov 2026 07:00:00 GMT"
+     "etag": "\"4455d622efd2a5e7878c8858a9f86263-gzip\"",
+     "last_modified": "Fri, 06 Nov 2026 07:00:00 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-04T07:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T07:00:00Z",
    "max_num": {}
   },
   "knowable-magazine": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
@@ -1068,47 +1069,47 @@
    "http": {
     "https://knowablemagazine.org/rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T00:00:05Z",
    "max_num": {}
   },
   "kod-durova": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 15,
     "message": "",
     "method": "rss",
-    "new": 3,
+    "new": 15,
     "status": "ok"
    },
    "http": {
     "https://kod.ru/rss/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T04:14:34Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:25:58Z",
    "max_num": {}
   },
   "lesswrong": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
-    "new": 1,
+    "new": 0,
     "status": "ok"
    },
    "http": {
     "https://www.lesswrong.com/feed.xml?view=curated-rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-06T03:19:36Z",
    "max_num": {}
   },
   "logos": {
-   "fail_streak": 26,
+   "fail_streak": 27,
    "failing_since": "2026-10-29T10:00:08Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "не нашёл ни ленты, ни карты сайта, ни списка статей",
     "method": "auto",
@@ -1129,7 +1130,7 @@
   },
   "marginal-revolution-university": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1139,7 +1140,7 @@
   },
   "matematicheskie-etyudy": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 1,
     "message": "",
     "method": "sitemap",
@@ -1147,7 +1148,7 @@
     "status": "ok",
     "via_url": "https://etudes.ru/sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-27T00:00:00Z",
    "max_num": {},
    "resolved": {
@@ -1159,7 +1160,7 @@
   },
   "modern-stoicism": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "одна из лент недоступна: HTTP 403",
     "method": "rss",
@@ -1171,13 +1172,13 @@
      "last_modified": "Tue, 20 Oct 2026 10:37:10 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-01-10T08:00:59Z",
    "max_num": {}
   },
   "monokler": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1188,7 +1189,7 @@
    "http": {
     "https://monocler.ru/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-28T13:25:23Z",
    "max_num": {},
    "resolved": {
@@ -1200,7 +1201,7 @@
   },
   "musicmap": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1210,26 +1211,26 @@
   },
   "naked-science": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
-    "new": 1,
+    "new": 7,
     "status": "ok"
    },
    "http": {
     "https://naked-science.ru/feed": {
-     "etag": "W/\"10b0010d230d9152800c6df7a9ca2b26d905b112839faad424d5d75e613a48fc\"",
-     "last_modified": "Fri, 06 Nov 2026 06:45:02 GMT"
+     "etag": "W/\"b0c5993d198456992f7c04f650bf15cc7854ff222113b7e0682a42d893156f20\"",
+     "last_modified": "Fri, 06 Nov 2026 16:45:01 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T05:39:27Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T14:01:08Z",
    "max_num": {}
   },
   "nauka-i-zhizn": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 18,
     "message": "",
     "method": "rss",
@@ -1240,7 +1241,7 @@
    "http": {
     "http://www.nkj.ru/rss/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-22T09:29:00Z",
    "max_num": {
     "nkj.ru/news/": 60719,
@@ -1255,25 +1256,25 @@
   },
   "nautilus": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 10,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 2,
+    "status": "ok"
    },
    "http": {
     "https://nautil.us/feed/": {
-     "etag": "W/\"cbeu9pqmaw8td\""
+     "etag": "W/\"49oxn8v6gz8sv\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T23:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:00:00Z",
    "max_num": {}
   },
   "newochem": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 12,
     "message": "",
     "method": "rss",
@@ -1283,13 +1284,13 @@
    "http": {
     "https://newochem.io/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-02-16T15:45:36Z",
    "max_num": {}
   },
   "nicky-case": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1302,13 +1303,13 @@
      "last_modified": "Thu, 10 Oct 2024 19:44:12 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2024-05-14T08:00:00Z",
    "max_num": {}
   },
   "nkrya": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1318,7 +1319,7 @@
   },
   "noema": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1328,13 +1329,13 @@
    "http": {
     "https://www.noemamag.com/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T14:53:38Z",
    "max_num": {}
   },
   "notre-dame-philosophical-reviews": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
@@ -1345,7 +1346,7 @@
    "http": {
     "https://ndpr.nd.edu/reviews.atom": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-30T11:14:00Z",
    "max_num": {},
    "resolved": {
@@ -1357,42 +1358,42 @@
   },
   "nozh": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 25,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 7,
+    "status": "ok"
    },
    "http": {
     "https://knife.media/feed/": {
-     "etag": "\"b2040b186ae6af1da9d13b693b0741f2\"",
-     "last_modified": "Thu, 05 Nov 2026 17:41:37 GMT"
+     "etag": "\"1b7f1bb4da1c0f71a80eb1bb8582d297\"",
+     "last_modified": "Fri, 06 Nov 2026 15:25:35 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T13:40:01Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T14:05:25Z",
    "max_num": {}
   },
   "nplus1": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 9,
     "status": "ok"
    },
    "http": {
     "https://nplus1.ru/rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T19:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:00:00Z",
    "max_num": {}
   },
   "openmind": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1403,7 +1404,7 @@
    "http": {
     "https://www.openmindmag.org/feed.rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-07-07T04:00:00Z",
    "max_num": {},
    "resolved": {
@@ -1415,7 +1416,7 @@
   },
   "our-world-in-data": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1427,13 +1428,13 @@
      "etag": "W/\"b9152a95d5810bc0edc7c5b3a968e3f0\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-02T00:00:00Z",
    "max_num": {}
   },
   "pastvu": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1443,7 +1444,7 @@
   },
   "pchela": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1456,13 +1457,13 @@
      "last_modified": "Thu, 05 Nov 2026 09:12:02 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T09:08:27Z",
    "max_num": {}
   },
   "perito": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1474,13 +1475,13 @@
      "etag": "W/\"5476b992488f47b07ad5ebce70d9f7d2\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-01-09T08:52:47Z",
    "max_num": {}
   },
   "philarchive": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1490,7 +1491,7 @@
   },
   "philosophy-bites": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 413,
     "message": "",
     "method": "rss",
@@ -1500,13 +1501,13 @@
    "http": {
     "https://philosophybites.libsyn.com/rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-19T09:16:00Z",
    "max_num": {}
   },
   "philosophy-now": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 30,
     "message": "",
     "method": "rss",
@@ -1516,13 +1517,13 @@
    "http": {
     "https://philosophynow.org/rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-13T00:00:00Z",
    "max_num": {}
   },
   "philpapers": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1532,7 +1533,7 @@
   },
   "polka": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1553,7 +1554,7 @@
   },
   "postnauka": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 4,
     "message": "",
     "method": "rss",
@@ -1563,7 +1564,7 @@
    "http": {
     "https://postnauka.org/feed": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-04T11:11:00Z",
    "max_num": {
     "postnauka.org/animate/": 158158,
@@ -1575,7 +1576,7 @@
   },
   "pravila-zhizni": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 77,
     "message": "",
     "method": "sitemap",
@@ -1583,8 +1584,8 @@
     "status": "ok",
     "via_url": "https://www.pravilamag.ru/sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -1595,25 +1596,25 @@
   },
   "provereno": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 100,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 2,
     "status": "ok"
    },
    "http": {
     "https://provereno.media/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T10:50:06Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T11:19:53Z",
    "max_num": {
-    "t.me/provereno_media/": 4566
+    "t.me/provereno_media/": 4572
    }
   },
   "prozhito": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 5,
     "message": "",
     "method": "page",
@@ -1621,8 +1622,8 @@
     "status": "ok",
     "via_url": "https://prozhito.org/"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {
     "archive.prozhito.org/collection/": 1866,
     "archive.prozhito.org/document/": 9987,
@@ -1636,10 +1637,10 @@
    }
   },
   "psihologicheskaya-gazeta": {
-   "fail_streak": 1,
+   "fail_streak": 2,
    "failing_since": "2026-11-06T06:50:43Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сайт не отвечает",
     "method": "auto",
@@ -1661,88 +1662,88 @@
   },
   "psyche": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://psyche.co/feed": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T11:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T11:01:00Z",
    "max_num": {}
   },
   "psyjournals-ru": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://psyjournals.ru/rss/news.rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T09:19:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T09:55:29Z",
    "max_num": {
-    "psyjournals.ru/news/": 3427
+    "psyjournals.ru/news/": 3428
    }
   },
   "public-books": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 10,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 1,
+    "status": "ok"
    },
    "http": {
     "https://www.publicbooks.org/feed/": {
-     "etag": "\"7e6af6ce069e4707961625d109b528c2\"",
-     "last_modified": "Thu, 05 Nov 2026 16:00:23 GMT"
+     "etag": "\"c4d6ea06e172859ab280905c3f4b8e49\"",
+     "last_modified": "Fri, 06 Nov 2026 16:00:00 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T16:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:00:00Z",
    "max_num": {}
   },
   "quanta-magazine": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 5,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 1,
+    "status": "ok"
    },
    "http": {
     "https://www.quantamagazine.org/feed/": {
-     "etag": "\"13ad9c72169ec6f8589deda027157d9d-gzip\"",
-     "last_modified": "Thu, 05 Nov 2026 17:04:03 GMT"
+     "etag": "\"8bdd68c0e13434d9ab809d04bab2cbe4-gzip\"",
+     "last_modified": "Fri, 06 Nov 2026 15:49:23 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-04T15:32:52Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:48:54Z",
    "max_num": {}
   },
   "rbk-trendy": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 1,
     "message": "",
     "method": "sitemap",
-    "new": 0,
+    "new": 1,
     "status": "ok",
     "via_url": "https://trends.rbc.ru/trends/sitemap_index.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T13:49:28Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T13:54:41Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -1753,25 +1754,25 @@
   },
   "reminder": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 95,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified"
+    "new": 2,
+    "status": "ok"
    },
    "http": {
     "https://reminder.media/rss": {
-     "etag": "W/\"1af2d-+Yychh3PpTmlk2xLYsXnXkVOdpM\""
+     "etag": "W/\"1a02e-0IuVd9yYZ+p7Re8OHujD/7MhNhU\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T05:33:01Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T09:41:13Z",
    "max_num": {}
   },
   "retraction-watch": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1781,13 +1782,13 @@
    "http": {
     "https://retractionwatch.com/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-04T18:57:23Z",
    "max_num": {}
   },
   "russia-in-photo": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1797,7 +1798,7 @@
   },
   "sapiens": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1808,7 +1809,7 @@
    "http": {
     "https://www.sapiens.org/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2025-12-16T21:01:30Z",
    "max_num": {},
    "resolved": {
@@ -1820,21 +1821,21 @@
   },
   "scientific-american": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 50,
     "message": "",
     "method": "rss",
-    "new": 0,
-    "status": "not_modified",
+    "new": 2,
+    "status": "ok",
     "via_url": "https://www.scientificamerican.com/platform/syndication/rss/"
    },
    "http": {
     "https://www.scientificamerican.com/platform/syndication/rss/": {
-     "last_modified": "Thu, 05 Nov 2026 19:00:00 GMT"
+     "last_modified": "Fri, 06 Nov 2026 11:45:00 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T19:00:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T11:45:00Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -1845,7 +1846,7 @@
   },
   "seans": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "sitemap",
@@ -1853,7 +1854,7 @@
     "status": "ok",
     "via_url": "https://seance.ru/sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T14:25:29Z",
    "max_num": {
     "seance.ru/2026/": 10
@@ -1867,7 +1868,7 @@
   },
   "seeing-theory": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1877,7 +1878,7 @@
   },
   "sep": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1891,7 +1892,7 @@
      "last_modified": "Thu, 05 Nov 2026 20:45:57 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-06T04:44:18Z",
    "max_num": {},
    "resolved": {
@@ -1903,7 +1904,7 @@
   },
   "sistemnyy-blok": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -1915,13 +1916,13 @@
      "last_modified": "Thu, 05 Nov 2026 14:39:20 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T14:39:17Z",
    "max_num": {}
   },
   "skeptical-inquirer": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 10,
     "message": "",
     "method": "rss",
@@ -1932,7 +1933,7 @@
    "http": {
     "https://skepticalinquirer.org/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-22T03:54:44Z",
    "max_num": {},
    "resolved": {
@@ -1944,7 +1945,7 @@
   },
   "smarthistory": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1954,7 +1955,7 @@
   },
   "stakanchik": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 2000,
     "message": "",
     "method": "sitemap",
@@ -1962,8 +1963,8 @@
     "status": "ok",
     "via_url": "https://stakanchik.media/sitemap.xml"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -1974,7 +1975,7 @@
   },
   "suttacentral": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -1983,10 +1984,10 @@
    }
   },
   "symmetry": {
-   "fail_streak": 64,
+   "fail_streak": 65,
    "failing_since": "2026-10-19T15:00:38Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "сайт не пускает сборщик (HTTP 403)",
     "method": "rss",
@@ -1998,19 +1999,19 @@
   },
   "t-zh": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 101,
     "message": "",
     "method": "rss",
-    "new": 4,
+    "new": 53,
     "status": "ok",
     "via_url": "https://t-j.ru/feed/"
    },
    "http": {
     "https://t-j.ru/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:00:01Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:19:45Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-03T17:04:54Z",
@@ -2021,21 +2022,21 @@
   },
   "techinsider": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
-    "new": 2,
+    "new": 20,
     "status": "ok",
     "via_url": "https://www.techinsider.ru/out/public-feed-all-news.xml"
    },
    "http": {
     "https://www.techinsider.ru/out/public-feed-all-news.xml": {
-     "last_modified": "Fri, 06 Nov 2026 06:26:38 GMT"
+     "last_modified": "Fri, 06 Nov 2026 16:26:17 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T04:52:00Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:20:00Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -2046,7 +2047,7 @@
   },
   "the-honest-broker": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
@@ -2055,34 +2056,34 @@
    },
    "http": {
     "https://www.honest-broker.com/feed": {
-     "etag": "W/\"99bd6-diVdX1Zr5p1z4J0Z3gAS/DHKy78\""
+     "etag": "W/\"99bd6-S/bXPnOUC9mbKRPP9VMgUMSqxo4\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-05T20:32:11Z",
    "max_num": {}
   },
   "the-marginalian": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 20,
     "message": "",
     "method": "rss",
-    "new": 0,
+    "new": 1,
     "status": "ok"
    },
    "http": {
     "https://www.themarginalian.org/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-05T17:58:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T15:13:34Z",
    "max_num": {
     "themarginalian.org/2026/10/18/": 20
    }
   },
   "the-philosopher": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -2094,13 +2095,13 @@
      "last_modified": "Sat, 31 Oct 2026 23:25:41 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-10-31T07:40:07Z",
    "max_num": {}
   },
   "the-point": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -2112,13 +2113,13 @@
      "last_modified": "Mon, 02 Nov 2026 16:54:11 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-02T16:31:01Z",
    "max_num": {}
   },
   "the-public-domain-review": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 100,
     "message": "",
     "method": "rss",
@@ -2128,13 +2129,13 @@
    "http": {
     "https://publicdomainreview.org/rss.xml": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-04T14:59:00Z",
    "max_num": {}
   },
   "the-pudding": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -2146,13 +2147,13 @@
      "last_modified": "Wed, 04 Nov 2026 16:39:45 GMT"
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-03T05:00:00Z",
    "max_num": {}
   },
   "theravada-ru": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 6,
     "message": "",
     "method": "page",
@@ -2160,8 +2161,8 @@
     "status": "ok",
     "via_url": "https://www.theravada.ru/"
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
@@ -2172,7 +2173,7 @@
   },
   "trv": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 15,
     "message": "",
     "method": "rss",
@@ -2182,13 +2183,13 @@
    "http": {
     "https://www.trv-science.ru/feed/": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2026-11-03T20:59:21Z",
    "max_num": {}
   },
   "understanding-science": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -2198,23 +2199,23 @@
   },
   "vc-ru": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 12,
     "message": "",
     "method": "rss",
-    "new": 1,
+    "new": 11,
     "status": "ok"
    },
    "http": {
     "https://vc.ru/rss": {}
    },
-   "last_ok": "2026-11-06T06:50:43Z",
-   "last_post": "2026-11-06T05:31:03Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:04:00Z",
    "max_num": {}
   },
   "wals-online": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "reference",
@@ -2224,7 +2225,7 @@
   },
   "what-if": {
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
+    "checked": "2026-11-06T16:47:10Z",
     "found": 0,
     "message": "",
     "method": "rss",
@@ -2236,41 +2237,38 @@
      "etag": "W/\"0-a2b6\""
     }
    },
-   "last_ok": "2026-11-06T06:50:43Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2022-12-06T00:00:00Z",
    "max_num": {}
   },
   "wireless-philosophy": {
-   "fail_streak": 1,
-   "failing_since": "2026-11-06T06:50:43Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
-    "message": "HTTP 404",
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 15,
+    "message": "",
     "method": "rss",
     "new": 0,
-    "status": "error"
+    "status": "ok"
    },
    "http": {
     "https://www.youtube.com/feeds/videos.xml?user=WirelessPhilosophy": {}
    },
-   "last_ok": "2026-11-05T23:39:23Z",
+   "last_ok": "2026-11-06T16:47:10Z",
    "last_post": "2023-05-12T08:22:11Z",
    "max_num": {}
   },
   "zigmund": {
-   "fail_streak": 1,
-   "failing_since": "2026-11-06T06:50:43Z",
    "health": {
-    "checked": "2026-11-06T06:50:43Z",
-    "found": 0,
-    "message": "сайт не отвечает",
-    "method": "auto",
+    "checked": "2026-11-06T16:47:10Z",
+    "found": 40,
+    "message": "",
+    "method": "page",
     "new": 0,
-    "status": "error"
+    "status": "ok",
+    "via_url": "https://zigmund.online/journal/"
    },
-   "last_ok": "2026-11-05T23:39:23Z",
-   "last_post": "2026-11-05T23:39:23Z",
+   "last_ok": "2026-11-06T16:47:10Z",
+   "last_post": "2026-11-06T16:47:10Z",
    "max_num": {},
    "resolved": {
     "at": "2026-11-02T00:46:29Z",
